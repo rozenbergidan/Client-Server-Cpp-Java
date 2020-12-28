@@ -34,16 +34,16 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         System.out.println("[" + LocalDateTime.now() + "]: " + msg);
         String[] splitMsg=msg.split(" ");
         if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
-        if(splitMsg[0].equals(command.ADMINREG.toString())) return adminReg(splitMsg);
+        else if(splitMsg[0].equals(command.STUDENTREG.toString())) return studentReg(splitMsg);
+        else if(splitMsg[0].equals(command.LOGIN.toString())) return login(splitMsg);
+        else if(splitMsg[0].equals(command.LOGOUT.toString())) return logout(splitMsg);
+        else  if(splitMsg[0].equals(command.COURSEREG.toString())) return courseReg(splitMsg);
+        else  if(splitMsg[0].equals(command.KDAMCHECK.toString())) return kdamCheck(splitMsg);
+        else if(splitMsg[0].equals(command.COURSESTAT.toString())) return courseStatus(splitMsg);
+        else if(splitMsg[0].equals(command.STUDENTSTAT.toString())) return studentStatus(splitMsg);
+        else  if(splitMsg[0].equals(command.ISREGISTERED.toString())) return isRegistered(splitMsg);
+        else   if(splitMsg[0].equals(command.UNREGISTER.toString())) return unregister(splitMsg);
+        else  if(splitMsg[0].equals(command.MYCOURSES.toString())) return myCourses(splitMsg);
 
         return null;
     }
@@ -112,9 +112,26 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String courseStatus(String[]str){
-        return null;    //7 - only for ADMIN
+        //TODO: complete this
+        if(!loggedIn){
+            return "ERROR 7";
+        }
+        else{
+            //check if username is admin - if not return ERROR 7
+            //check if the course: str[1] exist in the Course.txt file - if not ERROR 7
+            //return the course: str[1] status from database
+        }
+        return "ACK 7";
     }
     private String studentStatus(String[]str){
+        //TODO: complete this
+        if(!loggedIn){
+            return "ERROR 8";
+        }else{
+            //check if username is admin - if not return ERROR 8
+            //check if the username: str[1] is not registered in the data base - return ERROR 8
+            //return the username: str[1] status from database
+        }
         return null;    //8 - only for AMIN
     }
     private String isRegistered(String[]str){
