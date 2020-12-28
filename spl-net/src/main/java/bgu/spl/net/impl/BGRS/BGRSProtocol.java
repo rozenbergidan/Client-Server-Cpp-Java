@@ -5,6 +5,7 @@ import bgu.spl.net.api.MessagingProtocol;
 import java.time.LocalDateTime;
 
 public class BGRSProtocol implements MessagingProtocol<String> {
+
     private boolean loggedIn;
     private String username;
 
@@ -28,6 +29,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         MYCOURSES,      //11
         ACK,            //12
         ERR             //13
+
     }
     @Override
     public String process(String msg) { //ADMINREG username password
@@ -135,19 +137,44 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         return null;    //8 - only for AMIN
     }
     private String isRegistered(String[]str){
+        if(!loggedIn){
+            return err(command.ISREGISTERED);
+        }
+        //check in DB if str[1] is a course
+        //check in the DB if the the student is register to course str[1]
+        // return REGISTERED if yes
+        // return NOT REGISTERED if no
         return null;    //9
     }
     private String unregister(String[]str){
-        return null;    //10
+        if(!loggedIn){
+            return err(command.UNREGISTER);
+        }
+        //check in DB if str[1] is a course
+        //check in the DB if the the student is not register to course str[1]
+        // return REGISTERED if yes
+        // return NOT REGISTERED if no
+        return ack(command.UNREGISTER);    //10
     }
     private String myCourses(String[]str){
-        return null;    //11
-    }
-    private String ack(String[]str){
+        if(!loggedIn){
+            return err(command.UNREGISTER);
+        }
+        //return ack(command.MYCOURSES, DataBase.getCourses());    //11
         return null;
     }
-    private String err(String[]str){
-        return null;
+    private String ack(command c){
+        return "ACK "+ c;
+    }
+
+    private String ack(command c, String ackMsg){
+        return "ACK "+ c + " " + ackMsg;
+    }
+    private String err(command c){
+        return "ERR " + c;
+    }
+    private String err(command c, String errMsg){
+        return "ERR " + c + " " + errMsg;
     }
 
 
