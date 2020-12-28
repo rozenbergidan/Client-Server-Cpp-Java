@@ -3,6 +3,9 @@ package bgu.spl.net.impl.BGRS;
 import bgu.spl.net.api.MessagingProtocol;
 
 public class BGRSProtocol implements MessagingProtocol<String> {
+    private enum OP_CODE{
+
+    }
     @Override
     public String process(String msg) {
         return null;
