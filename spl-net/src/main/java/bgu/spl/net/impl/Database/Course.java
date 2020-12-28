@@ -23,6 +23,7 @@ public class Course {
             capacity++;
         }
         else{
+            //TODO: complete this
             //throw error of there is no place in course
         }
     }
