@@ -32,5 +32,11 @@ public class Database {
         return false;
     }
 
+    public boolean isStudentRegistered(String userName){
+
+    }
+
+
+
 
 }
