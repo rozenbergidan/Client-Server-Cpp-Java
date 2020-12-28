@@ -6,11 +6,13 @@ public class User {
     public String username;
     public String password;
     public LinkedList<String> courses;
+    public boolean admin;
 
-    public User(String _username,String _password){
+    public User(String _username,String _password, boolean _admin){
         username=_username;
         password=_password;
         courses=new LinkedList<>();
+        admin=_admin;
     }
 
     public void register(String courseNum){
@@ -18,9 +20,7 @@ public class User {
     }
 
     public String status(){
-        String output="Student: "+username+"\n";
-        output=output+"Courses: "+courses.toString()+"\n";
-        return output;
+        return "Student: "+username+"\n"+"Courses: "+courses.toString()+"\n";
 
     }
 }
