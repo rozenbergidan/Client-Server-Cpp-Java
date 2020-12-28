@@ -23,12 +23,16 @@ public class Course {
             capacity++;
         }
         else{
+            //TODO: complete this
             //throw error of there is no place in course
         }
     }
 
     public String status(){
-        String output="";
+        String output="("+id+") "+name+"\n";
+        output=output+"Seats available: "+capacity+"\\"+limit+"\n";
+        output=output+"Students Registered:"+students.toString()+"\n";
+        return output;
     }
 
 }
