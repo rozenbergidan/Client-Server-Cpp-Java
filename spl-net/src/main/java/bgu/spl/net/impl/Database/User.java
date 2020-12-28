@@ -19,14 +19,7 @@ public class User {
 
     public String status(){
         String output="Student: "+username+"\n";
-        output=output+"[";
-        for (String course:courses) {
-            output=output+course+",";
-        }
-        if (output.charAt(output.length()-1)==','){
-            output=output.substring(0,output.length()-2);
-        }
-        output=output+"]";
+        output=output+"Courses: "+courses.toString()+"\n";
         return output;
 
     }

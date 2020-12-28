@@ -28,7 +28,10 @@ public class Course {
     }
 
     public String status(){
-        String output="";
+        String output="("+id+") "+name+"\n";
+        output=output+"Seats available: "+capacity+"\\"+limit+"\n";
+        output=output+"Students Registered:"+students.toString()+"\n";
+        return output;
     }
 
 }
