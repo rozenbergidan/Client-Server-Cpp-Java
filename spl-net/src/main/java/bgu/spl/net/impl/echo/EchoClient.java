@@ -28,10 +28,16 @@ public class EchoClient {
             System.out.println("sending message to server");
             out.write(args[1]);
             out.newLine();
-            out.flush();
 
+
+            out.flush();
             System.out.println("awaiting response");
-            String line = in.readLine();
+            String line;
+            line= in.readLine();
+            System.out.println("message from server: " + line);
+            line= in.readLine();
+            System.out.println("message from server: " + line);
+            line= in.readLine();
             System.out.println("message from server: " + line);
         }
     }
