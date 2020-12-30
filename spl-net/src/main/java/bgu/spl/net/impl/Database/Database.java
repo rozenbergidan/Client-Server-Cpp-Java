@@ -1,4 +1,7 @@
 package bgu.spl.net.impl.Database;
+
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Passive object representing the Database where all courses and users are stored.
  * <p>
@@ -8,7 +11,9 @@ package bgu.spl.net.impl.Database;
  * You can add private fields and methods to this class as you see fit.
  */
 public class Database {
-
+    private ConcurrentHashMap<String, Student> students;
+    private ConcurrentHashMap<String, Admin> admins;
+    private ConcurrentHashMap<Integer, Course> courses;
 
     //to prevent user from creating new Database
     private Database() {
@@ -27,8 +32,15 @@ public class Database {
      * loades the courses from the file path specified
      * into the Database, returns true if successful.
      */
-    boolean initialize(String coursesFilePath) {
+    public boolean initialize(String coursesFilePath) {
         // TODO: implement
+        return false;
+    }
+
+    /**
+     *
+     */
+    public boolean adminReg(String username, String password){
         return false;
     }
 

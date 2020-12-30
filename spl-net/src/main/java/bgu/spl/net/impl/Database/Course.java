@@ -3,13 +3,13 @@ package bgu.spl.net.impl.Database;
 import java.util.LinkedList;
 
 public class Course {
-    public String id;
+    public int id;
     public String name;
     public int limit;
     public int capacity;
     public LinkedList<String> students;
 
-    public Course(String _id, String _name, int _limit){
+    public Course(int _id, String _name, int _limit){
         id=_id;
         name=_name;
         limit=_limit;
@@ -29,6 +29,7 @@ public class Course {
     }
 
     public String status(){
+        //TODO: need to write sorting studuents alphabeticly
         return "("+id+") "+name+"\n"+"Seats available: "+capacity+"\\"+limit+"\n"+"Students Registered:"+students.toString()+"\n";
 
     }
