@@ -3,25 +3,15 @@ package bgu.spl.net.impl.Database;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Student {
-    private String username;
-    private String password;
+public class Student extends User {
     private LinkedList<String> courses;
-    private AtomicBoolean isLoggedIn;
 
-    public Student(String _username, String _password, boolean _admin){
-        username=_username;
-        password=_password;
+    public Student(String _username, String _password){
+        super(_username,_password);
         courses=new LinkedList<>();
-        isLoggedIn=new AtomicBoolean(false);
     }
 
-    public boolean loggedIn(){
-        return isLoggedIn.compareAndSet(false,true);
-    }
-    public void loggedOut(){
-        isLoggedIn.compareAndSet(true,false);
-    }
+
     public void register(String courseNum){
         courses.add(courseNum);
     }

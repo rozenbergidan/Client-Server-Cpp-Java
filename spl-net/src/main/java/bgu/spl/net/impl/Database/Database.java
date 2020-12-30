@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Database {
     private ConcurrentHashMap<String, Student> students;
     private ConcurrentHashMap<String, Admin> admins;
-    private ConcurrentHashMap<Integer, Course> courses;
+    private ConcurrentHashMap<String, Course> courses;
 
     //to prevent user from creating new Database
     private Database() {
@@ -37,12 +37,54 @@ public class Database {
         return false;
     }
 
-    /**
-     *
-     */
-    public boolean adminReg(String username, String password){
-        return false;
+
+    public void adminReg(String username, String password){
+        String lusername=username.toLowerCase();
+        if(admins.containsKey(lusername)){
+            throw new IllegalArgumentException("Admin is already registered");
+        }
+        if(students.containsKey(lusername)){
+            throw new IllegalArgumentException("A Student has already registered with the same usename");
+        }
+        admins.put(lusername, new Admin(lusername,password));
+
     }
 
+    public void studentReg(String username, String password){
+        String lusername=username.toLowerCase();
+        if(students.containsKey(lusername)){
+            throw new IllegalArgumentException("Student is already registered");
+        }
+        if(admins.containsKey(lusername)){
+            throw new IllegalArgumentException("An Admin has already registered with the same username");
+        }
+        students.put(lusername, new Student(lusername,password));
+    }
+
+    public User login(String username, String password){
+        String lusername=username.toLowerCase();
+        if(admins.containsKey(lusername) & students.containsKey(lusername)){
+            throw new IllegalArgumentException("User does not exist");
+        }
+        if(admins.containsKey(lusername)){
+            if(admins.get(lusername).loggedIn()){
+                if(admins.get(lusername).checkPassword(password)){
+                    throw new IllegalArgumentException("Password does not match");
+                }
+               throw new IllegalArgumentException("Already logged in");
+            }
+            return admins.get(lusername);
+        } else if(students.containsKey(lusername)){
+            if(students.get(lusername).loggedIn()) {
+                if (students.get(lusername).checkPassword(password)) {
+                    throw new IllegalArgumentException("Password does not match");
+                }
+                throw new IllegalArgumentException("Already logged in");
+            }
+            return students.get(lusername);
+        }
+
+
+    }
 
 }
