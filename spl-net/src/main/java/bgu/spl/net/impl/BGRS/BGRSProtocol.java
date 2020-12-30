@@ -10,7 +10,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
 
     private boolean loggedIn;
     private String username;
-    private Student student;
+    //private Student student;
 
     public BGRSProtocol(){
         loggedIn = false;
@@ -131,43 +131,50 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     private String studentStatus(String[]str){
         //TODO: complete this
         if(!loggedIn){
-            return "ERROR 8";
-        }else{
-            //check if username is admin - if not return ERROR 8
-            //check if the username: str[1] is not registered in the data base - return ERROR 8
-            //return the username: str[1] status from database
+            return err(command.STUDENTSTAT);
         }
+        String output = "student: "+ username + "\nCourses: ";
+        try{
+            output = output + Database.getInstance().studentStatus(str[1], username);
+        }catch (Exception e) { return err(command.STUDENTSTAT);}
         return null;    //8 - only for AMIN
     }
+
+
     private String isRegistered(String[]str){
-        //TODO: complete this
         if(!loggedIn){
             return err(command.ISREGISTERED);
         }
-        //check in DB if str[1] is a course
-        //check in the DB if the the student is register to course str[1]
-        // return REGISTERED if yes
-        // return NOT REGISTERED if no
-        return null;    //9
+        String output;
+        try {
+            output = Database.getInstance().isRegistered(str[1], username);
+        }catch (Exception e){ return err(command.ISREGISTERED);}
+        return output;
     }
+
+
     private String unregister(String[]str){
         //TODO: complete this
         if(!loggedIn){
             return err(command.UNREGISTER);
         }
         try{
-            Database.getInstance().unregister(username);
-        }
+            Database.getInstance().unregister(str[1], username);
+        }catch (Exception e) {return err(command.UNREGISTER);}
         return ack(command.UNREGISTER);    //10
     }
-    private String myCourses(String[]str){
-        if(!loggedIn){
-            return err(command.UNREGISTER);
-        }
 
-        //return ack(command.MYCOURSES, DataBase.getCourses());    //11
-        return null;
+    private String myCourses(String[]str){
+        String output;
+        if(!loggedIn){
+            return err(command.MYCOURSES);
+        }
+        try {
+            output = ack(command.MYCOURSES, Database.getInstance().myCourses(username));
+        }catch (Exception e) {return err(command.MYCOURSES);}
+        return output;
     }
+
     private String ack(command c){
         return "ACK "+ c;
     }
@@ -175,6 +182,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     private String ack(command c, String ackMsg){
         return "ACK "+ c + " " + ackMsg;
     }
+
     private String err(command c){
         return "ERR " + c;
     }

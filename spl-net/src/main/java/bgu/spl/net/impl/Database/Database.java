@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Database {
     private ConcurrentHashMap<String, Student> students;
     private ConcurrentHashMap<String, Admin> admins;
-    private ConcurrentHashMap<Integer, Course> courses;
+    private ConcurrentHashMap<String, Course> courses;
 
     //to prevent user from creating new Database
     private Database() {
@@ -47,10 +47,35 @@ public class Database {
     /**
      *
      */
-    public void unregister(int Cid, String student) throws Exception{
+    public String studentStatus(String student, String admin) throws Exception{
+        if(!admins.containsKey(admin)) throw new Exception("the user that call this function is not an admin");
+        if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
+        return students.get(student).myCourses().toString();
+
+    }
+    /**
+     *
+     */
+    public String isRegistered(String Cid, String student) throws Exception{
         if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
+        if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
+        return courses.get(Cid).isRegistered(student);
+
+    }
+    /**
+     *
+     */
+    public void unregister(String Cid, String student) throws Exception{
+        if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
+        if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         courses.get(Cid).unregister(student);
     }
+
+    public String myCourses(String student) throws Exception{
+        if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
+        return students.get(student).myCourses().toString();
+    }
+
 
 
 

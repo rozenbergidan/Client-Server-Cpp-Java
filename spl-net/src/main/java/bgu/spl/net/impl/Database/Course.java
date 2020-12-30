@@ -3,13 +3,13 @@ package bgu.spl.net.impl.Database;
 import java.util.LinkedList;
 
 public class Course {
-    public int id;
+    public String id;
     public String name;
     public int limit;
     public int capacity;
     public LinkedList<String> students;
 
-    public Course(int _id, String _name, int _limit){
+    public Course(String _id, String _name, int _limit){
         id=_id;
         name=_name;
         limit=_limit;
@@ -28,6 +28,11 @@ public class Course {
         if (!students.contains(student)) throw new Exception("Tried to unregister, but wasnt registered");
         students.remove(student);
         capacity--;
+    }
+
+    public String isRegistered(String student){
+        if( students.contains(student)) return "REGISTERED";
+        return "NOT REGISTERED";
     }
 
     public String status(){
