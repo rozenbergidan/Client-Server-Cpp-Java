@@ -17,15 +17,17 @@ public class Course {
         students=new LinkedList<>();//TODO: check what is necessary in the aspect of concurrency!
     }
 
-    public void register(String student) {
-        if (capacity < limit) {
+    public synchronized void register(String student) throws Exception{
+        if (students.contains(student)) throw new Exception("student already registered to this course");
+        if (capacity > limit)  throw new Exception("tried to registered to full course");
             students.add(student);
             capacity++;
-        }
-        else{
-            //TODO: complete this
-            //throw error of there is no place in course
-        }
+    }
+
+    public synchronized void unregister(String student) throws Exception{
+        if (!students.contains(student)) throw new Exception("Tried to unregister, but wasnt registered");
+        students.remove(student);
+        capacity--;
     }
 
     public String status(){

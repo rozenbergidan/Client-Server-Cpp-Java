@@ -44,7 +44,13 @@ public class Database {
         return false;
     }
 
-
+    /**
+     *
+     */
+    public void unregister(int Cid, String student) throws Exception{
+        if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
+        courses.get(Cid).unregister(student);
+    }
 
 
 

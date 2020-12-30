@@ -1,6 +1,8 @@
 package bgu.spl.net.impl.BGRS;
 
 import bgu.spl.net.api.MessagingProtocol;
+import bgu.spl.net.impl.Database.Database;
+import bgu.spl.net.impl.Database.Student;
 
 import java.time.LocalDateTime;
 
@@ -8,6 +10,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
 
     private boolean loggedIn;
     private String username;
+    private Student student;
 
     public BGRSProtocol(){
         loggedIn = false;
@@ -152,16 +155,16 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         if(!loggedIn){
             return err(command.UNREGISTER);
         }
-        //check in DB if str[1] is a course
-        //check in the DB if the the student is not register to course str[1]
-        // return REGISTERED if yes
-        // return NOT REGISTERED if no
+        try{
+            Database.getInstance().unregister(username);
+        }
         return ack(command.UNREGISTER);    //10
     }
     private String myCourses(String[]str){
         if(!loggedIn){
             return err(command.UNREGISTER);
         }
+
         //return ack(command.MYCOURSES, DataBase.getCourses());    //11
         return null;
     }

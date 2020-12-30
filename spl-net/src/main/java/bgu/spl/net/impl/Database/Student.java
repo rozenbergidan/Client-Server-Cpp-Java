@@ -31,4 +31,9 @@ public class Student {
         return "Student: "+username+"\n"+"Courses: "+courses.toString()+"\n";
 
     }
+
+    public LinkedList<String> myCourses(){
+        return courses;
+    }
+
 }
