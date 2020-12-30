@@ -1,5 +1,7 @@
 package bgu.spl.net.impl.Database;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -15,26 +17,41 @@ public class Database {
     private ConcurrentHashMap<String, Admin> admins;
     private ConcurrentHashMap<String, Course> courses;
 
+    private static class DatabaseHolder{
+        private static Database instance = new Database();
+    }
     //to prevent user from creating new Database
     private Database() {
-        // TODO: implement
+        students=new ConcurrentHashMap<>();
+        admins=new ConcurrentHashMap<>();
+        courses=new ConcurrentHashMap<>();
     }
 
     /**
      * Retrieves the single instance of this class.
      */
     public static Database getInstance() {
-        //TODO: implement
-        return null;
+        return DatabaseHolder.instance;
     }
-
+    []
     /**
      * loades the courses from the file path specified
      * into the Database, returns true if successful.
      */
     public boolean initialize(String coursesFilePath) {
         // TODO: implement
-        return false;
+        String[] lines = coursesFilePath.split("\n");
+        for (String line:lines) {
+            String[]data = line.split("|");
+            LinkedList<String> kdam=new LinkedList<>();
+            if(data[2].length()!=2) {
+                String kdams = data[2].substring(1, data[2].length() - 1);
+                String[] kdamsCourses = kdams.split(",");
+                kdam.addAll(Arrays.asList(kdamsCourses));
+            }
+            courses.put(data[0], new Course(data[0],data[1],Integer.parseInt(data[3]),kdam));
+        }
+        return true;
     }
 
 
