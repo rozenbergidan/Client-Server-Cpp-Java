@@ -15,11 +15,16 @@ public abstract class User {
     public String getUsername(){
         return username;
     }
-    public boolean checkPassword(String _password){
+    protected boolean checkPassword(String _password){
         return password.equals(_password);
     }
-    public boolean login(){
-        return isLoggedIn.compareAndSet(false,true);
+    public void login(String _password)throws Exception{
+        if(!checkPassword(_password)){
+            throw new Exception("Password does not match");
+        }
+        if(!isLoggedIn.compareAndSet(false,true)){
+            throw new Exception("Already logged in");
+        }
     }
     public void logout(){
         isLoggedIn.compareAndSet(true,false);

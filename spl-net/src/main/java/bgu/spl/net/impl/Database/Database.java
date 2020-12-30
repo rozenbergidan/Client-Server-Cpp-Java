@@ -42,7 +42,6 @@ public class Database {
      * into the Database, returns true if successful.
      */
     public boolean initialize(String coursesFilePath) {
-        // TODO: implement
         File file = new File(coursesFilePath);
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
             String line;
@@ -81,12 +80,15 @@ public class Database {
      *
      */
     public String studentStatus(String student, String admin) throws Exception{
+        admin=admin.toLowerCase();
+        student=student.toLowerCase();
         if(!admins.containsKey(admin)) throw new Exception("the user that call this function is not an admin");
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         return students.get(student).myCourses().toString();
     }
 
     public String courseStatus(String Cid, String admin) throws Exception{
+        admin=admin.toLowerCase();
         if(!admins.containsKey(admin)) throw new Exception("the user that call this function is not an admin");
         if(!courses.containsKey(Cid)) throw new Exception("the user that call this function is not a student");
         return courses.get(Cid).status();
@@ -95,6 +97,7 @@ public class Database {
      *
      */
     public String isRegistered(String Cid, String student) throws Exception{
+        student=student.toLowerCase();
         if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         return courses.get(Cid).isRegistered(student);
@@ -104,6 +107,7 @@ public class Database {
      *
      */
     public void unregister(String Cid, String student) throws Exception{
+        student=student.toLowerCase();
         if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         courses.get(Cid).unregister(student);
@@ -116,6 +120,7 @@ public class Database {
      * @throws Exception
      */
     public String myCourses(String student) throws Exception{
+        student=student.toLowerCase();
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         return students.get(student).myCourses().toString();
     }
@@ -151,19 +156,10 @@ public class Database {
             throw new Exception("User does not exist");
         }
         if(admins.containsKey(lusername)){
-            if(admins.get(lusername).login()){
-                if(admins.get(lusername).checkPassword(password)){
-                    throw new Exception("Password does not match");
-                }
-               throw new Exception("Already logged in");
-            }
-        } else if(students.containsKey(lusername)){
-            if(students.get(lusername).login()) {
-                if (students.get(lusername).checkPassword(password)) {
-                    throw new Exception("Password does not match");
-                }
-                throw new Exception("Already logged in");
-            }
+            admins.get(lusername).login(password);
+        }
+        if(students.containsKey(lusername)){
+            students.get(lusername).login(password);
         }
         return username;
     }

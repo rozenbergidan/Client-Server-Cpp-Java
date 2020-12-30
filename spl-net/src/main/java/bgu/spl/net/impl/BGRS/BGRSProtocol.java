@@ -55,7 +55,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String adminReg(String[] str){
-        //TODO: complete this
         //check if the str[1] is already register in the database - send ERROR 1
         //if not register, add new pair in database with username: str[1] and pass: str[2]
         try{
@@ -64,11 +63,10 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         catch(Exception e){
             return err(command.ADMINREG);
         }
-        return "ACK 1";
+        return ack(command.ADMINREG);
     }
 
     private String studentReg(String[]str){
-        //TODO: complete this
         //check if the str[1] is already register in the database - return ERROR 2
         //return "ERROR 2 - Student already registered"
         //if not register, add new pair in database with username: str[1] and pass: str[2]
@@ -81,7 +79,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String login(String[]str){
-        //TODO: complete this
         if(loggedIn){
             return err(command.LOGIN);
         }else {
@@ -94,7 +91,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
                 return err(command.LOGIN);
             }
         }
-        return "ACK 3";
+        return ack(command.LOGIN);
     }
 
     private String logout(String[]str){
@@ -114,7 +111,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String courseReg(String[]str){
-        //TODO: complete this
         if(!loggedIn){
             return err(command.COURSEREG);
         }
@@ -133,7 +129,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String kdamCheck(String[]str){
-        //TODO: complete this
         if(!loggedIn){
             return err(command.KDAMCHECK);
         }
@@ -149,7 +144,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String courseStatus(String[]str){
-        //TODO: complete this
         if(!loggedIn){
             return err(command.COURSESTAT);
         }
@@ -165,7 +159,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         }
     }
     private String studentStatus(String[]str){
-        //TODO: complete this
         if(!loggedIn){
             return err(command.STUDENTSTAT);
         }
@@ -188,7 +181,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
 
 
     private String unregister(String[]str){
-        //TODO: complete this
         if(!loggedIn){
             return err(command.UNREGISTER);
         }
