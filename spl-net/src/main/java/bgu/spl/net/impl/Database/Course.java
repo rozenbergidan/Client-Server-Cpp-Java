@@ -14,7 +14,7 @@ public class Course {
         name=_name;
         limit=_limit;
         capacity=0;
-        students=new LinkedList<>();
+        students=new LinkedList<>();//TODO: check what is necessary in the aspect of concurrency!
     }
 
     public void register(String student) {
