@@ -33,8 +33,8 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         MYCOURSES,      //11
         ACK,            //12
         ERR             //13
-
     }
+
     @Override
     public String process(String msg) { //ADMINREG username password
         System.out.println("[" + LocalDateTime.now() + "]: " + msg);
@@ -53,14 +53,16 @@ public class BGRSProtocol implements MessagingProtocol<String> {
 
         return null;
     }
+
     private String adminReg(String[] str){
         //TODO: complete this
         //check if the str[1] is already register in the database - send ERROR 1
         //if not register, add new pair in database with username: str[1] and pass: str[2]
         try{
         Database.getInstance().adminReg(str[1],str[2]);
-        }catch{Exception e){
-         return "ERROR 1 - "+e.message();
+        }
+        catch(Exception e){
+            return err(command.ADMINREG);
         }
         return "ACK 1";
     }
@@ -71,17 +73,17 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         //return "ERROR 2 - Student already registered"
         //if not register, add new pair in database with username: str[1] and pass: str[2]
         try{
-        Database.getInstance().studentReg(str[1],str[2]);\
+        Database.getInstance().studentReg(str[1],str[2]);
         }catch(Exception e){
-        return "ERROR 2 - "+e.message();
+            return err(command.STUDENTREG);
         }
-        return "ACK 2";
+        return ack(command.STUDENTREG);
     }
 
     private String login(String[]str){
         //TODO: complete this
         if(loggedIn){
-            return "ERROR 3";
+            return err(command.LOGIN);
         }else {
             //check if the username: str[1] is not registered in the data base - return ERROR 3
             //check if the pass: str[2] does not match to the username: str[1] - return ERROR 3
@@ -89,7 +91,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
             username=Database.getInstance().login(str[1], str[2]);
             loggedIn=true;
         }catch(Exception e){
-            return "ERROR 3 - "+ e.message;
+                return err(command.LOGIN);
             }
         }
         return "ACK 3";
@@ -97,7 +99,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
 
     private String logout(String[]str){
         if(!loggedIn){
-            return "ERROR 4";
+            return err(command.LOGOUT);
         }
         else{
             try {
@@ -105,16 +107,16 @@ public class BGRSProtocol implements MessagingProtocol<String> {
                 loggedIn = false;
                 username = "";
             }catch(Exception e){
-                return "ERROR 4 - "+e.message;
+                return err(command.LOGOUT);
             }
         }
-        return "ACK 4";
+        return ack(command.LOGOUT);
     }
 
     private String courseReg(String[]str){
         //TODO: complete this
         if(!loggedIn){
-            return "ERROR 5";
+            return err(command.COURSEREG);
         }
         else {
             //check if the course: str[1] exist in the Course.txt file - if not ERROR 5
@@ -124,51 +126,54 @@ public class BGRSProtocol implements MessagingProtocol<String> {
             try{
             Database.getInstance().courseReg(str[1],username);
             }catch(Exception e){
-            return "ERROR 5 - " +e.message;
+                return err(command.COURSEREG);
             }
         }
-        return "ACK 5";
+        return ack(command.COURSEREG);
     }
 
     private String kdamCheck(String[]str){
         //TODO: complete this
         if(!loggedIn){
-            return "ERROR 6";
+            return err(command.KDAMCHECK);
         }
         else{
             //check if the course: str[1] exist in the Course.txt file - if not ERROR 6
             //return all the course: str[1]'s kdams
             try{
-            return Database.getInstance().kdamCheck(str[1]);
+            return ack(command.KDAMCHECK, Database.getInstance().kdamCheck(str[1]));
             }catch(Exception e){
-            return "ERROR 6 - "+e.message;
+                return err(command.KDAMCHECK);
             }
         }
-        return "ACK 6";
     }
 
     private String courseStatus(String[]str){
         //TODO: complete this
         if(!loggedIn){
-            return "ERROR 7";
+            return err(command.COURSESTAT);
         }
         else{
             //check if username is admin - if not return ERROR 7
             //check if the course: str[1] exist in the Course.txt file - if not ERROR 7
             //return the course: str[1] status from database
+            try{
+                return ack(command.COURSESTAT, Database.getInstance().courseStatus(str[1],username));
+            }catch(Exception e){
+                return err(command.COURSESTAT);
+            }
         }
-        return "ACK 7";
     }
     private String studentStatus(String[]str){
         //TODO: complete this
         if(!loggedIn){
             return err(command.STUDENTSTAT);
         }
-        String output = "student: "+ username + "\nCourses: ";
+        String output = "Student: "+ username + "\nCourses: ";
         try{
             output = output + Database.getInstance().studentStatus(str[1], username);
         }catch (Exception e) { return err(command.STUDENTSTAT);}
-        return null;    //8 - only for AMIN
+        return ack(command.STUDENTSTAT, output);    //8 - only for AMIN
     }
 
 
@@ -176,11 +181,9 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         if(!loggedIn){
             return err(command.ISREGISTERED);
         }
-        String output;
         try {
-            output = Database.getInstance().isRegistered(str[1], username);
+            return ack(command.ISREGISTERED,Database.getInstance().isRegistered(str[1], username));
         }catch (Exception e){ return err(command.ISREGISTERED);}
-        return output;
     }
 
 
@@ -202,9 +205,8 @@ public class BGRSProtocol implements MessagingProtocol<String> {
             return err(command.MYCOURSES);
         }
         try {
-            output = ack(command.MYCOURSES, Database.getInstance().myCourses(username));
+            return ack(command.MYCOURSES, Database.getInstance().myCourses(username));
         }catch (Exception e) {return err(command.MYCOURSES);}
-        return output;
     }
 
     private String ack(command c){
@@ -212,6 +214,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String ack(command c, String ackMsg){
+        //TODO: check whether or not we need to send multiple messages
         return "ACK "+ c + " " + ackMsg;
     }
 

@@ -19,7 +19,6 @@ public class Student extends User {
     public String status(){
         //TODO: need to write sorting to courses as it is in the Course.txt
         return "Student: "+username+"\n"+"Courses: "+courses.toString()+"\n";
-
     }
 
     public boolean hasKdam(String cid){

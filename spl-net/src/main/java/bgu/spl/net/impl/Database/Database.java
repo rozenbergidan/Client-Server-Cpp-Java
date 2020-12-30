@@ -84,7 +84,12 @@ public class Database {
         if(!admins.containsKey(admin)) throw new Exception("the user that call this function is not an admin");
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         return students.get(student).myCourses().toString();
+    }
 
+    public String courseStatus(String Cid, String admin) throws Exception{
+        if(!admins.containsKey(admin)) throw new Exception("the user that call this function is not an admin");
+        if(!courses.containsKey(Cid)) throw new Exception("the user that call this function is not a student");
+        return courses.get(Cid).status();
     }
     /**
      *
@@ -104,13 +109,24 @@ public class Database {
         courses.get(Cid).unregister(student);
     }
 
+    /**
+     *
+     * @param student
+     * @return
+     * @throws Exception
+     */
     public String myCourses(String student) throws Exception{
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         return students.get(student).myCourses().toString();
     }
 
 
-
+    /**
+     *
+     * @param username
+     * @param password
+     * @throws Exception
+     */
     public void studentReg(String username, String password)throws Exception{
         String lusername=username.toLowerCase();
         if(students.containsKey(lusername)){
@@ -122,6 +138,13 @@ public class Database {
         students.put(lusername, new Student(lusername,password));
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws Exception
+     */
     public String login(String username, String password)throws Exception{
         String lusername=username.toLowerCase();
         if(admins.containsKey(lusername) & students.containsKey(lusername)){
@@ -145,6 +168,10 @@ public class Database {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void logout(String username){
         String lusername=username;
         if(admins.containsKey(lusername)){
@@ -155,6 +182,12 @@ public class Database {
         }
     }
 
+    /**
+     *
+     * @param Cid
+     * @param student
+     * @throws Exception
+     */
     public void courseReg(String Cid, String student)throws Exception{
         String lusername=student;
         if(admins.containsKey(lusername)){
@@ -177,6 +210,13 @@ public class Database {
             }
         }
     }
+
+    /**
+     *
+     * @param Cid
+     * @return
+     * @throws Exception
+     */
     public String  kdamCheck(String Cid) throws Exception{
         if(!courses.containsKey(Cid)){
             throw new Exception("Course does not Exist");
