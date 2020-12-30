@@ -33,6 +33,11 @@ public class Course {
         capacity--;
     }
 
+    public String isRegistered(String student){
+        if( students.contains(student)) return "REGISTERED";
+        return "NOT REGISTERED";
+    }
+
     public String status(){
         //TODO: need to write sorting studuents alphabeticly
         return "("+id+") "+name+"\n"+"Seats available: "+capacity+"\\"+limit+"\n"+"Students Registered:"+students.toString()+"\n";
