@@ -18,10 +18,10 @@ public abstract class User {
     public boolean checkPassword(String _password){
         return password.equals(_password);
     }
-    public boolean loggedIn(){
+    public boolean login(){
         return isLoggedIn.compareAndSet(false,true);
     }
-    public void loggedOut(){
+    public void logout(){
         isLoggedIn.compareAndSet(true,false);
     }
 }

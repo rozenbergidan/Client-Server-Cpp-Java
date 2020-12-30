@@ -38,54 +38,91 @@ public class Database {
     }
 
 
-    public void adminReg(String username, String password){
+    public void adminReg(String username, String password)throws Exception{
         String lusername=username.toLowerCase();
         if(admins.containsKey(lusername)){
-            throw new IllegalArgumentException("Admin is already registered");
+            throw new Exception("Admin is already registered");
         }
         if(students.containsKey(lusername)){
-            throw new IllegalArgumentException("A Student has already registered with the same usename");
+            throw new Exception("A Student has already registered with the same usename");
         }
         admins.put(lusername, new Admin(lusername,password));
 
     }
 
-    public void studentReg(String username, String password){
+    public void studentReg(String username, String password)throws Exception{
         String lusername=username.toLowerCase();
         if(students.containsKey(lusername)){
-            throw new IllegalArgumentException("Student is already registered");
+            throw new Exception("Student is already registered");
         }
         if(admins.containsKey(lusername)){
-            throw new IllegalArgumentException("An Admin has already registered with the same username");
+            throw new Exception("An Admin has already registered with the same username");
         }
         students.put(lusername, new Student(lusername,password));
     }
 
-    public User login(String username, String password){
+    public String login(String username, String password)throws Exception{
         String lusername=username.toLowerCase();
         if(admins.containsKey(lusername) & students.containsKey(lusername)){
-            throw new IllegalArgumentException("User does not exist");
+            throw new Exception("User does not exist");
         }
         if(admins.containsKey(lusername)){
-            if(admins.get(lusername).loggedIn()){
+            if(admins.get(lusername).login()){
                 if(admins.get(lusername).checkPassword(password)){
-                    throw new IllegalArgumentException("Password does not match");
+                    throw new Exception("Password does not match");
                 }
-               throw new IllegalArgumentException("Already logged in");
+               throw new Exception("Already logged in");
             }
-            return admins.get(lusername);
         } else if(students.containsKey(lusername)){
-            if(students.get(lusername).loggedIn()) {
+            if(students.get(lusername).login()) {
                 if (students.get(lusername).checkPassword(password)) {
-                    throw new IllegalArgumentException("Password does not match");
+                    throw new Exception("Password does not match");
                 }
-                throw new IllegalArgumentException("Already logged in");
+                throw new Exception("Already logged in");
             }
-            return students.get(lusername);
         }
-        return null;
+        return username;
     }
 
+    public void logout(String username){
+        String lusername=username;
+        if(admins.containsKey(lusername)){
+            admins.get(lusername).logout();
+        }
+        else if(students.containsKey(lusername)){
+            students.get(lusername).logout();
+        }
+    }
+
+    public void courseReg(String Cid, String student)throws Exception{
+        String lusername=student;
+        if(admins.containsKey(lusername)){
+            throw new Exception("Admins cant register to courses");
+        }else{
+            if(!courses.containsKey(Cid)){
+                throw new Exception("Course does not Exist");
+            }else{
+                for (String courseKdam:courses.get(Cid).getKdams()) {
+                    if(!students.get(lusername).hasKdam(courseKdam)){
+                        throw new Exception("Students does not have the necessary kdams");
+                    }
+                }
+                try {
+                    courses.get(Cid).register(lusername);
+                    students.get(lusername).register(Cid);
+                }catch(Exception e){
+                    throw e;
+                }
+            }
+        }
+    }
+    public String  kdamCheck(String Cid) throws Exception{
+        if(!courses.containsKey(Cid)){
+            throw new Exception("Course does not Exist");
+        }else{
+            return courses.get(Cid).getKdams().toString();
+        }
+    }
     public void unregister(String Cid, String student) throws Exception{
         if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
         courses.get(Cid).unregister(student);

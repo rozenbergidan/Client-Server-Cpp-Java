@@ -8,15 +8,18 @@ public class Course {
     public int limit;
     public int capacity;
     public LinkedList<String> students;
-
-    public Course(String _id, String _name, int _limit){
+    public LinkedList<String> kdams;
+    public Course(String _id, String _name, int _limit,LinkedList<String> _kdams){
         id=_id;
         name=_name;
         limit=_limit;
         capacity=0;
         students=new LinkedList<>();//TODO: check what is necessary in the aspect of concurrency!
+        kdams=_kdams;
     }
-
+    public LinkedList<String> getKdams(){
+        return kdams;
+    }
     public synchronized void register(String student) throws Exception{
         if (students.contains(student)) throw new Exception("student already registered to this course");
         if (capacity > limit)  throw new Exception("tried to registered to full course");

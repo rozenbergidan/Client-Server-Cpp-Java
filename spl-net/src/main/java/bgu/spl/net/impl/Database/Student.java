@@ -22,6 +22,13 @@ public class Student extends User {
 
     }
 
+    public boolean hasKdam(String cid){
+        for (String course:courses) {
+            if(cid.equals(course))
+                return true;
+        }
+        return false;
+    }
     public LinkedList<String> myCourses(){
         return courses;
     }
