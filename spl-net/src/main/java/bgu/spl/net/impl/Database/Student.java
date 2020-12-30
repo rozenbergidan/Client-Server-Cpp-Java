@@ -21,4 +21,9 @@ public class Student extends User {
         return "Student: "+username+"\n"+"Courses: "+courses.toString()+"\n";
 
     }
+
+    public LinkedList<String> myCourses(){
+        return courses;
+    }
+
 }

@@ -12,6 +12,9 @@ public abstract class User {
         password=_password;
         isLoggedIn=new AtomicBoolean(false);
     }
+    public String getUsername(){
+        return username;
+    }
     public boolean checkPassword(String _password){
         return password.equals(_password);
     }

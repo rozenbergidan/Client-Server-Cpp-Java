@@ -83,8 +83,13 @@ public class Database {
             }
             return students.get(lusername);
         }
-
-
+        return null;
     }
+
+    public void unregister(String Cid, String student) throws Exception{
+        if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
+        courses.get(Cid).unregister(student);
+    }
+
 
 }
