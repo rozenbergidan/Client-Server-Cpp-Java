@@ -1,11 +1,11 @@
 package bgu.spl.net.impl.Database;
 
-public class Admin {
-    public String username;
-    public String password;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class Admin extends User {
 
     public Admin(String _username, String _password){
-        username=_username;
-        password=_password;
+        super(_username,_password);
     }
+
 }

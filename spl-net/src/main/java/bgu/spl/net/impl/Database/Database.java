@@ -37,11 +37,17 @@ public class Database {
         return false;
     }
 
-    /**
-     *
-     */
-    public boolean adminReg(String username, String password){
-        return false;
+
+    public void adminReg(String username, String password){
+        String lusername=username.toLowerCase();
+        if(admins.containsKey(lusername)){
+            throw new IllegalArgumentException("Admin is already registered");
+        }
+        if(students.containsKey(lusername)){
+            throw new IllegalArgumentException("A Student has already registered with the same usename");
+        }
+        admins.put(lusername, new Admin(lusername,password));
+
     }
 
     /**
@@ -76,6 +82,43 @@ public class Database {
         return students.get(student).myCourses().toString();
     }
 
+
+
+    public void studentReg(String username, String password){
+        String lusername=username.toLowerCase();
+        if(students.containsKey(lusername)){
+            throw new IllegalArgumentException("Student is already registered");
+        }
+        if(admins.containsKey(lusername)){
+            throw new IllegalArgumentException("An Admin has already registered with the same username");
+        }
+        students.put(lusername, new Student(lusername,password));
+    }
+
+    public User login(String username, String password){
+        String lusername=username.toLowerCase();
+        if(admins.containsKey(lusername) & students.containsKey(lusername)){
+            throw new IllegalArgumentException("User does not exist");
+        }
+        if(admins.containsKey(lusername)){
+            if(admins.get(lusername).loggedIn()){
+                if(admins.get(lusername).checkPassword(password)){
+                    throw new IllegalArgumentException("Password does not match");
+                }
+               throw new IllegalArgumentException("Already logged in");
+            }
+            return admins.get(lusername);
+        } else if(students.containsKey(lusername)){
+            if(students.get(lusername).loggedIn()) {
+                if (students.get(lusername).checkPassword(password)) {
+                    throw new IllegalArgumentException("Password does not match");
+                }
+                throw new IllegalArgumentException("Already logged in");
+            }
+            return students.get(lusername);
+        }
+        return null;
+    }
 
 
 

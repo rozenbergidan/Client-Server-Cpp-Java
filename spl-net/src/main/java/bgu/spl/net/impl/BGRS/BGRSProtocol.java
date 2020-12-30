@@ -2,15 +2,15 @@ package bgu.spl.net.impl.BGRS;
 
 import bgu.spl.net.api.MessagingProtocol;
 import bgu.spl.net.impl.Database.Database;
+import bgu.spl.net.impl.Database.User;
 import bgu.spl.net.impl.Database.Student;
-
 import java.time.LocalDateTime;
 
 public class BGRSProtocol implements MessagingProtocol<String> {
 
     private boolean loggedIn;
     private String username;
-    //private Student student;
+
 
     public BGRSProtocol(){
         loggedIn = false;
@@ -56,13 +56,24 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         //TODO: complete this
         //check if the str[1] is already register in the database - send ERROR 1
         //if not register, add new pair in database with username: str[1] and pass: str[2]
+        //try{
+        //Database.getInstance().adminReg(str[1],str[2]);
+        //}catch{IllegalArgumentException e){
+        // return "ERROR 1 - "+e.message();
+        //}
         return "ACK 1";
     }
 
     private String studentReg(String[]str){
         //TODO: complete this
         //check if the str[1] is already register in the database - return ERROR 2
+        //return "ERROR 2 - Student already registered"
         //if not register, add new pair in database with username: str[1] and pass: str[2]
+        //try{
+        //Database.getInstance().studentReg(str[1],str[2]);\
+        //}catch(IllegalArgumentException e){
+        //return "ERROR 2 - "+e.message();
+        //}
         return "ACK 2";
     }
 
@@ -72,9 +83,15 @@ public class BGRSProtocol implements MessagingProtocol<String> {
             return "ERROR 3";
         }else{
             //check if the username: str[1] is not registered in the data base - return ERROR 3
+            //Database.getInstance().isRegisteredStudent(str[1])
+            //return "ERROR 3 - Student is not registered"
+            //Database.getInstance().isRegisteredAdmin(str[1])
+            //return "ERROR 3 - Admin is not registered"
+
             //check if the pass: str[2] does not match to the username: str[1] - return ERROR 3
-            loggedIn =true;
-            username=str[1];
+
+//            loggedIn =true;
+//            user = Database.getInstance().login(str[1],str[2]);
         }
         return "ACK 3";
     }
@@ -161,6 +178,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         try{
             Database.getInstance().unregister(str[1], username);
         }catch (Exception e) {return err(command.UNREGISTER);}
+
         return ack(command.UNREGISTER);    //10
     }
 
