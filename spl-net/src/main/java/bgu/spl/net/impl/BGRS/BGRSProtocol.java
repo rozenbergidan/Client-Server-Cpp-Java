@@ -137,6 +137,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         return null;    //8 - only for AMIN
     }
     private String isRegistered(String[]str){
+        //TODO: complete this
         if(!loggedIn){
             return err(command.ISREGISTERED);
         }
@@ -147,6 +148,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         return null;    //9
     }
     private String unregister(String[]str){
+        //TODO: complete this
         if(!loggedIn){
             return err(command.UNREGISTER);
         }
@@ -176,8 +178,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     private String err(command c, String errMsg){
         return "ERR " + c + " " + errMsg;
     }
-
-
 
 
     @Override
