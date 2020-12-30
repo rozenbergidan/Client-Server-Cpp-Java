@@ -1,5 +1,9 @@
 package bgu.spl.net.impl.Database;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,23 +37,29 @@ public class Database {
     public static Database getInstance() {
         return DatabaseHolder.instance;
     }
-    []
     /**
      * loades the courses from the file path specified
      * into the Database, returns true if successful.
      */
     public boolean initialize(String coursesFilePath) {
         // TODO: implement
-        String[] lines = coursesFilePath.split("\n");
-        for (String line:lines) {
-            String[]data = line.split("|");
-            LinkedList<String> kdam=new LinkedList<>();
-            if(data[2].length()!=2) {
-                String kdams = data[2].substring(1, data[2].length() - 1);
-                String[] kdamsCourses = kdams.split(",");
-                kdam.addAll(Arrays.asList(kdamsCourses));
-            }
-            courses.put(data[0], new Course(data[0],data[1],Integer.parseInt(data[3]),kdam));
+        File file = new File(coursesFilePath);
+        try(BufferedReader br = new BufferedReader(new FileReader(file))){
+            String line;
+            while((line=br.readLine())!=null){
+                String[]data = line.split("|");
+                LinkedList<String> kdam=new LinkedList<>();
+                if(data[2].length()!=2) {
+                    String kdams = data[2].substring(1, data[2].length() - 1);
+                    String[] kdamsCourses = kdams.split(",");
+                    kdam.addAll(Arrays.asList(kdamsCourses));
+                }
+                courses.put(data[0], new Course(data[0],data[1],Integer.parseInt(data[3]),kdam));
+        }
+        }catch(IOException e){
+            return false;
+        }catch(Exception e){
+            return false;
         }
         return true;
     }
