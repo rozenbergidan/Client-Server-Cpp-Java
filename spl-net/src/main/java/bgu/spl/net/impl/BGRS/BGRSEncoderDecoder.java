@@ -12,10 +12,11 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
     private String decodedMassege;
 
+    private boolean desided;
 
     @Override
     public String decodeNextByte(byte nextByte) {
-        return null;
+
     }
 
     @Override
@@ -30,8 +31,13 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
     }
 
     private void bytesToString(){
-    String result = new String(bytes, 0, len, StandardCharsets.UTF_8);
+        byte[] srt = new byte[]{bytes[0],bytes[1]};
+    String result = bytesToShort(srt) + new String(bytes, 2, len, StandardCharsets.UTF_8);
+
     len =0;
+    }
+    private abstract static class decodeHelper{
+
     }
 
 }
