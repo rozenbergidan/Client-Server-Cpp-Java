@@ -3,8 +3,15 @@ package bgu.spl.net.impl.BGRS;
 import bgu.spl.net.api.MessageEncoderDecoder;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
-
+/**
+ * there are 4 different decodes:
+ * LOGOUT + MYCOURSE
+ * ADMINREG+STUDENTREG+LOGIN
+ * COURSEREG+KDAMCHECK+COURSESTAT+ISREGISTER+UNREGISTER
+ * STUDENTSTAT
+ */
 public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
     private byte[] bytes = new byte[1 << 10]; //start with 1k
@@ -15,6 +22,13 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
     @Override
     public String decodeNextByte(byte nextByte) {
+        if(len==2){
+            String result = new String(bytes, 0, len, StandardCharsets.UTF_8);
+            if(result.equals("ADMINGREG")){
+                return decodedAdminReg(???);
+            }
+        }
+        pushByte(nextByte);
         return null;
     }
 
@@ -34,4 +48,11 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
     len =0;
     }
 
+    private void pushByte(byte nextByte) {
+        if (len >= bytes.length) {
+            bytes = Arrays.copyOf(bytes, len * 2);
+        }
+
+        bytes[len++] = nextByte;
+    }
 }
