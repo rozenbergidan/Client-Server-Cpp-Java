@@ -2,28 +2,36 @@ package bgu.spl.net.impl.BGRS;
 
 import bgu.spl.net.api.MessageEncoderDecoder;
 
+import java.nio.charset.StandardCharsets;
 
-public class BGRSEncoderDecoder implements MessageEncoderDecoder<String[]> {
+
+public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
     private byte[] bytes = new byte[1 << 10]; //start with 1k
     private int len = 0;
 
+    private String decodedMassege;
+
 
     @Override
-    public String[] decodeNextByte(byte nextByte) {
+    public String decodeNextByte(byte nextByte) {
         return null;
     }
 
     @Override
-    public byte[] encode(String[] message) {
+    public byte[] encode(String message) {
         return new byte[0];
     }
 
-    public short bytesToShort(byte[] byteArr)
-    {
-        short result = (short)((byteArr[0] & 0xff) << 8);
-        result += (short)(byteArr[1] & 0xff);
+    public short bytesToShort(byte[] byteArr) {
+        short result = (short) ((byteArr[0] & 0xff) << 8);
+        result += (short) (byteArr[1] & 0xff);
         return result;
+    }
+
+    private void bytesToString(){
+    String result = new String(bytes, 0, len, StandardCharsets.UTF_8);
+    len =0;
     }
 
 }
