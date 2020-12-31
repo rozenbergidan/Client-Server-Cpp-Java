@@ -79,7 +79,6 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         }
     }
     private class oneShortDecoder extends decoder{
-
         public oneShortDecoder(short opCode) {
             super(opCode);
         }
@@ -108,6 +107,38 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
                 short srt = bytesToShort(last2);
                 len = 0;
                 return ""+opCode+" "+srt;
+            }
+            return null;
+        }
+    }
+    private class twoStringDecoder extends decoder{
+        private int counter;
+        private int cut;
+        private String username;
+        private String password;
+
+        public twoStringDecoder(short opCode) {
+            super(opCode);
+            counter=0;
+        }
+
+        @Override
+        protected String nextByte(byte nextByte) {
+            pushByte(nextByte);
+            if(nextByte=='\0'){
+                counter++;
+                if(counter==1){
+                    byte[] userbyte=Arrays.copyOfRange(bytes,2,len-1);
+                    username=bytesToString(userbyte);
+                    cut=len+1;
+                }else if(counter==2){
+                    byte[] passbyte=Arrays.copyOfRange(bytes,cut,len-1);
+                    password=bytesToString(passbyte);
+                }
+            }
+            if(counter==2){
+                len = 0;
+                return ""+opCode+" "+username+" "+password;
             }
             return null;
         }
