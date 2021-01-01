@@ -20,24 +20,26 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
     @Override
     public byte[] encode(String message) {
-        short opCode = Short.parseShort(message.substring(0,2));
+        short opCode;
+        if(message.substring(0,3).equals("ERR")) opCode = 13;
+        else opCode = 12;
+
         if (opCode == 13){
             short errMsg = Short.parseShort(message.substring(4));
-
+            return arrMerge(shortToBytes(opCode),shortToBytes(errMsg));
         }
-        else if(opCode == 12){
-            String afterOpcode=message.substring(4);
+        else {
+            String afterOpcode = message.substring(4);
             boolean additionalMsg = afterOpcode.contains(" ");
             short opcodeAns;
 
-            if(afterOpcode.charAt(5)!=' '){
-                opcodeAns=Short.parseShort(afterOpcode.substring(4,5));
+            if (afterOpcode.charAt(5) != ' ') {
+                opcodeAns = Short.parseShort(afterOpcode.substring(4, 5));
+            } else {
+                opcodeAns = Short.parseShort("" + afterOpcode.charAt(4));
             }
-            else{
-                opcodeAns=Short.parseShort(""+afterOpcode.charAt(4));
-            }
-            byte[] opcodebyte=shortToBytes(opCode);
-            byte[] opcodeAnsbyte=shortToBytes(opcodeAns);
+            byte[] opcodebyte = shortToBytes(opCode);
+            byte[] opcodeAnsbyte = shortToBytes(opcodeAns);
             byte[] output;
             if(additionalMsg){
                 String msg=message.substring(afterOpcode.indexOf(" ")+1);
@@ -52,7 +54,6 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             }
             return output;
         }
-        return new byte[0];
     }
 
     @Override
