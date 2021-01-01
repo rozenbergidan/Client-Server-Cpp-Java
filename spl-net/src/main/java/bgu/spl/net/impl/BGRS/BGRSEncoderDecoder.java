@@ -50,11 +50,9 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         return result;
     }
 
-    private void bytesToString(){
-        byte[] srt = new byte[]{bytes[0],bytes[1]};
-    String result = bytesToShort(srt) + new String(bytes, 2, len, StandardCharsets.UTF_8);
-
-    len =0;
+    private String  bytesToString(byte[] b){
+    String result =new String(b, 0, len, StandardCharsets.UTF_8);
+    return result;
     }
 
 
@@ -68,6 +66,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
     private abstract class  decoder{
         short opCode;
+
         public decoder(short opCode){
             this.opCode = opCode;
         }
@@ -109,6 +108,23 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
                 len = 0;
                 return ""+opCode+" "+srt;
             }
+            return null;
+        }
+    }
+    private class oneShortOneStringDecoder extends decoder{
+        public oneShortOneStringDecoder(short opCode) {
+            super(opCode);
+        }
+
+        @Override
+        protected String nextByte(byte nextByte) {
+            if(nextByte == '\0'){
+                byte[] byteArr  = new byte[len - 2];
+                String srt = bytesToString(byteArr);
+                len = 0;
+                return opCode + srt;
+            }
+            pushByte(nextByte);
             return null;
         }
     }
