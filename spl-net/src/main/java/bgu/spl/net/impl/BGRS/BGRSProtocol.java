@@ -207,7 +207,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String ack(command c, String ackMsg){
-        //TODO: check whether or not we need to send multiple messages
         return "ACK "+ c + " " + ackMsg;
     }
 

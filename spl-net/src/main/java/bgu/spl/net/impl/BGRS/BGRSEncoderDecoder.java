@@ -29,7 +29,12 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             short errMsg = Short.parseShort(message.substring(4));
 
         }
-        else
+        else if(opCode == 12){
+            boolean additionalMsg= message.substring(4).contains(" ");
+            if(additionalMsg){
+                String msg=
+            }
+        }
         return new byte[0];
     }
 
