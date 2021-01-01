@@ -1,6 +1,5 @@
 package bgu.spl.net.impl.Database;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Admin extends User {
 

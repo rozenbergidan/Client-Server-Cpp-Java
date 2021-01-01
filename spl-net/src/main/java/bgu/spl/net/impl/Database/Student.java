@@ -1,5 +1,6 @@
 package bgu.spl.net.impl.Database;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -14,12 +15,12 @@ public class Student extends User {
 
     public void register(String courseNum){
         courses.add(courseNum);
+        sort();
     }
 
-    public String status(){
-        //TODO: need to write sorting to courses as it is in the Course.txt
-        return "Student: "+username+"\n"+"Courses: "+courses.toString()+"\n";
-    }
+    private void sort(){
+        courses.sort(Comparator.comparingInt(x -> Database.getInstance().getIndex(x)));
+        }
 
     public boolean hasKdam(String cid){
         for (String course:courses) {

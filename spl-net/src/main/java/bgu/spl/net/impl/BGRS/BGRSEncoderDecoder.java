@@ -16,11 +16,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
     private byte[] bytes = new byte[1 << 10]; //start with 1k
     private int len = 0;
-    private decoder deco;
-
-    private String decodedMassege;
-
-    private boolean desided;
+    private Decoder decoder;
 
     @Override
     public byte[] encode(String message) {
@@ -45,7 +41,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             byte[] output;
             if(additionalMsg){
                 String msg=message.substring(afterOpcode.indexOf(" ")+1);
-                byte[] stringBytes=message.getBytes();
+                byte[] stringBytes=message.getBytes(StandardCharsets.UTF_8);
                 byte[] temp=arrMerge(arrMerge(opcodebyte,opcodeAnsbyte),stringBytes);
                 output=new byte[temp.length+1];
                 output[output.length-1]=0;
@@ -66,10 +62,10 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             pushByte(nextByte);
             short opCode = bytesToShort(bytes);
             //factoryMethod
-            deco = getDecoder(opCode);
-            return deco.isDone();
+            decoder = getDecoder(opCode);
+            return decoder.isDone();
         }else{
-            return deco.nextByte(nextByte);
+            return decoder.nextByte(nextByte);
         }
         return null;
 
@@ -118,7 +114,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
     }
 
 
-    private decoder getDecoder(short opCode){
+    private Decoder getDecoder(short opCode){
         if(opCode == 4 || opCode == 11) return new oneShortDecoder(opCode);
         if(opCode == 5 || opCode == 6 || opCode == 7 || opCode == 9 ||opCode == 10 ) return new twoShortDecoder(opCode);
         if(opCode == 8) return new oneShortOneStringDecoder(opCode);
@@ -127,10 +123,10 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         return new oneShortDecoder(opCode);
     }
 
-    private abstract class  decoder{
+    private abstract class Decoder {
         short opCode;
 
-        private decoder(short opCode){
+        private Decoder(short opCode){
             this.opCode = opCode;
         }
 
@@ -140,7 +136,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             return null;
         }
     }
-    private class oneShortDecoder extends decoder{
+    private class oneShortDecoder extends Decoder {
         private oneShortDecoder(short opCode) {
             super(opCode);
         }
@@ -156,7 +152,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         }
     }
 
-    private class twoShortDecoder extends decoder{
+    private class twoShortDecoder extends Decoder {
         private twoShortDecoder(short opCode) {
             super(opCode);
         }
@@ -174,7 +170,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         }
     }
 
-    private class oneShortOneStringDecoder extends decoder {
+    private class oneShortOneStringDecoder extends Decoder {
         private oneShortOneStringDecoder(short opCode) {
             super(opCode);
         }
@@ -191,7 +187,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         }
     }
 
-    private class twoStringDecoder extends decoder{
+    private class twoStringDecoder extends Decoder {
         private int counter;
         private int cut;
         private String username;
