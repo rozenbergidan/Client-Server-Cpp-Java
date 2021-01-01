@@ -79,6 +79,19 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         bytes[len++] = nextByte;
     }
 
+    private byte[] arrMerge(byte [] arr1, byte[] arr2){
+        int size = arr1.length + arr2.length;
+        byte[] output = new byte[size];
+        for(int i = 0; i < arr1.length; i++){
+            output[i]=arr1[i];
+        }
+        for(int i = arr1.length; i < size; i++){
+            output[i] = arr2[i-arr1.length];
+        }
+        return output;
+    }
+
+
     private decoder getDecoder(short opCode){
         if(opCode == 4 || opCode == 11) return new oneShortDecoder(opCode);
         if(opCode == 5 || opCode == 6 || opCode == 7 || opCode == 9 ||opCode == 10 ) return new twoShortDecoder(opCode);
