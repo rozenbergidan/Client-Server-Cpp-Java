@@ -27,7 +27,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         short opCode = Short.parseShort(message.substring(0,2));
         if (opCode == 13){
             short errMsg = Short.parseShort(message.substring(4));
-
+            return arrMerge(shortToBytes(opCode),shortToBytes(errMsg));
         }
         else
         return new byte[0];
