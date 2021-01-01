@@ -14,7 +14,7 @@ public class ClientTester {
              BufferedWriter out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()))) {
 
             System.out.println("sending message to server");
-            out.write("asd");
+            out.write("10");
             out.newLine();
 
 
