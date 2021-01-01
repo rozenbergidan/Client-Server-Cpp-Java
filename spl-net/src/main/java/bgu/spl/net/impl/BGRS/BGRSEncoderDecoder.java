@@ -29,7 +29,33 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             short errMsg = Short.parseShort(message.substring(4));
             return arrMerge(shortToBytes(opCode),shortToBytes(errMsg));
         }
-        else
+        else if(opCode == 12){
+            String afterOpcode=message.substring(4);
+            boolean additionalMsg = afterOpcode.contains(" ");
+            short opcodeAns;
+
+            if(afterOpcode.charAt(5)!=' '){
+                opcodeAns=Short.parseShort(afterOpcode.substring(4,5));
+            }
+            else{
+                opcodeAns=Short.parseShort(""+afterOpcode.charAt(4));
+            }
+            byte[] opcodebyte=shortToBytes(opCode);
+            byte[] opcodeAnsbyte=shortToBytes(opcodeAns);
+            byte[] output;
+            if(additionalMsg){
+                String msg=message.substring(afterOpcode.indexOf(" ")+1);
+                byte[] stringBytes=message.getBytes();
+                byte[] temp=arrMerge(arrMerge(opcodebyte,opcodeAnsbyte),stringBytes);
+                output=new byte[temp.length+1];
+                output[output.length-1]=0;
+            }else{
+                byte[] temp = arrMerge(opcodebyte,opcodeAnsbyte);
+                output=new byte[temp.length+1];
+                output[output.length-1]=0;
+            }
+            return output;
+        }
         return new byte[0];
     }
 
