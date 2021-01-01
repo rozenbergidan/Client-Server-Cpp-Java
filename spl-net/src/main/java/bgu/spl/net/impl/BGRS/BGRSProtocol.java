@@ -33,6 +33,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         MYCOURSES,      //11
         ACK,            //12
         ERR             //13
+
     }
 
     @Override
@@ -51,7 +52,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         else   if(splitMsg[0].equals(command.UNREGISTER.toString())) return unregister(splitMsg);
         else  if(splitMsg[0].equals(command.MYCOURSES.toString())) return myCourses(splitMsg);
 
-        return null;
+        return err(Short.parseShort(splitMsg[0]));
     }
 
     private String adminReg(String[] str){
@@ -213,8 +214,8 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     private String err(command c){
         return "ERR " + c;
     }
-    private String err(command c, String errMsg){
-        return "ERR " + c + " " + errMsg;
+    private String err(short srt){
+        return "ERR " + srt;
     }
 
 

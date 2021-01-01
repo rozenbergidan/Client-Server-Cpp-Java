@@ -23,31 +23,46 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
     private boolean desided;
 
     @Override
+    public byte[] encode(String message) {
+        short opCode = Short.parseShort(message.substring(0,2));
+        if (opCode == 13){
+            short errMsg = Short.parseShort(message.substring(4));
+
+        }
+        else
+        return new byte[0];
+    }
+
+    @Override
     public String decodeNextByte(byte nextByte) {
         if (len == 0) pushByte(nextByte);
         else if(len == 1){
             pushByte(nextByte);
             short opCode = bytesToShort(bytes);
             //factoryMethod
-            //deco = getDecoder(opCode)
-            //return deco.isDone();
-        }else {
-            //return deco.nextByte();
+            deco = getDecoder(opCode);
+            return deco.isDone();
+        }else{
+            return deco.nextByte(nextByte);
         }
         return null;
 
     }
 
 
-    @Override
-    public byte[] encode(String message) {
-        return new byte[0];
-    }
 
     public short bytesToShort(byte[] byteArr) {
         short result = (short) ((byteArr[0] & 0xff) << 8);
         result += (short) (byteArr[1] & 0xff);
         return result;
+    }
+
+    public byte[] shortToBytes(short num)
+    {
+        byte[] bytesArr = new byte[2];
+        bytesArr[0] = (byte)((num >> 8) & 0xFF);
+        bytesArr[1] = (byte)(num & 0xFF);
+        return bytesArr;
     }
 
     private String  bytesToString(byte[] b){
@@ -64,10 +79,19 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         bytes[len++] = nextByte;
     }
 
+    private decoder getDecoder(short opCode){
+        if(opCode == 4 || opCode == 11) return new oneShortDecoder(opCode);
+        if(opCode == 5 || opCode == 6 || opCode == 7 || opCode == 9 ||opCode == 10 ) return new twoShortDecoder(opCode);
+        if(opCode == 8) return new oneShortOneStringDecoder(opCode);
+        if(opCode == 1 || opCode == 2 || opCode == 3) return new twoStringDecoder(opCode);
+        //throw new Exception("opCode not supported");
+        return new oneShortDecoder(opCode);
+    }
+
     private abstract class  decoder{
         short opCode;
 
-        public decoder(short opCode){
+        private decoder(short opCode){
             this.opCode = opCode;
         }
 
@@ -78,7 +102,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         }
     }
     private class oneShortDecoder extends decoder{
-        public oneShortDecoder(short opCode) {
+        private oneShortDecoder(short opCode) {
             super(opCode);
         }
 
@@ -94,7 +118,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
     }
 
     private class twoShortDecoder extends decoder{
-        public twoShortDecoder(short opCode) {
+        private twoShortDecoder(short opCode) {
             super(opCode);
         }
 
@@ -110,51 +134,52 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             return null;
         }
     }
-<<<<<<< HEAD
-    private class oneShortOneStringDecoder extends decoder{
-        public oneShortOneStringDecoder(short opCode) {
+
+    private class oneShortOneStringDecoder extends decoder {
+        private oneShortOneStringDecoder(short opCode) {
             super(opCode);
-=======
+        }
+
+        protected String nextByte(byte nextByte) {
+            if (nextByte == '\0') {
+                byte[] byteArr=Arrays.copyOfRange(bytes,2,len);
+                String srt = bytesToString(byteArr);
+                len = 0;
+                return opCode + srt;
+            }
+            pushByte(nextByte);
+            return null;
+        }
+    }
+
     private class twoStringDecoder extends decoder{
         private int counter;
         private int cut;
         private String username;
         private String password;
 
-        public twoStringDecoder(short opCode) {
+        private twoStringDecoder(short opCode) {
             super(opCode);
             counter=0;
->>>>>>> 97985a62a0aacc7780e9c04bbafab521ba2ef4e3
         }
 
         @Override
         protected String nextByte(byte nextByte) {
-<<<<<<< HEAD
-            if(nextByte == '\0'){
-                byte[] byteArr  = new byte[len - 2];
-                String srt = bytesToString(byteArr);
-                len = 0;
-                return opCode + srt;
-            }
-            pushByte(nextByte);
-=======
-            pushByte(nextByte);
-            if(nextByte=='\0'){
+            if(nextByte=='\0') {
                 counter++;
-                if(counter==1){
-                    byte[] userbyte=Arrays.copyOfRange(bytes,2,len-1);
-                    username=bytesToString(userbyte);
-                    cut=len+1;
-                }else if(counter==2){
-                    byte[] passbyte=Arrays.copyOfRange(bytes,cut,len-1);
-                    password=bytesToString(passbyte);
+                if (counter == 1) {
+                    byte[] userbyte = Arrays.copyOfRange(bytes, 2, len);
+                    username = bytesToString(userbyte);
+                    cut = len + 1;
+                } else if (counter == 2) {
+                    byte[] passbyte = Arrays.copyOfRange(bytes, cut, len);
+                    password = bytesToString(passbyte);
+                    len = 0;
+                    counter = 0;
+                    return "" + opCode + " " + username + " " + password;
                 }
             }
-            if(counter==2){
-                len = 0;
-                return ""+opCode+" "+username+" "+password;
-            }
->>>>>>> 97985a62a0aacc7780e9c04bbafab521ba2ef4e3
+            pushByte(nextByte);
             return null;
         }
     }
