@@ -9,10 +9,12 @@ public class BGRSProtocol implements MessagingProtocol<String> {
 
     private boolean loggedIn;
     private String username;
+    private boolean shouldTerminate;
 
     public BGRSProtocol(){
         loggedIn = false;
         username="";
+        shouldTerminate=false;
     }
 
     private enum command{
@@ -101,6 +103,8 @@ public class BGRSProtocol implements MessagingProtocol<String> {
                 Database.getInstance().logout(username);
                 loggedIn = false;
                 username = "";
+                shouldTerminate=true;
+
             }catch(Exception e){
                 return err(command.LOGOUT);
             }
@@ -217,6 +221,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
 
     @Override
     public boolean shouldTerminate() {
-        return false;
+        return shouldTerminate;
     }
 }
