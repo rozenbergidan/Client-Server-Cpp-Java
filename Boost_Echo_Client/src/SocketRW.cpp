@@ -45,7 +45,7 @@ void SocketRW::run() {
             break;
         }
     }
-    }
+}
 
 
 }
