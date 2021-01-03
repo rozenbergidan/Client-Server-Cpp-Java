@@ -1,4 +1,4 @@
-#include <connectionHandler.h>
+#include <ConnectionHandler.h>
  
 using boost::asio::ip::tcp;
 
@@ -63,13 +63,18 @@ bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
     return true;
 }
  
-bool ConnectionHandler::getLine(std::string& line) {
+bool ConnectionHandler::getLine(std::string& line) {"OPNAME asd 123"
     return getFrameAscii(line, '\n');
 }
+
 
 bool ConnectionHandler::sendLine(std::string& line) {
     return sendFrameAscii(line, '\n');
 }
+
+
+
+
  
 
 bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
