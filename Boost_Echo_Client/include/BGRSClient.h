@@ -7,9 +7,11 @@
 
 
 class BGRSClient {
+public:
     public BGRSClient();
     public bool openConnection(std::string serverIP, short port);
     public void run();
+
 };
 
 
