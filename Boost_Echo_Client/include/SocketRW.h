@@ -2,8 +2,8 @@
 // Created by 97254 on 03/01/2021.
 //
 
-#ifndef BOOST_ECHO_CLIENT_SOCKERRW_H
-#define BOOST_ECHO_CLIENT_SOCKERRW_H
+#ifndef BOOST_ECHO_CLIENT_SOCKETRW_H
+#define BOOST_ECHO_CLIENT_SOCKETRW_H
 #include <mutex>
 #include <string>
 #include <queue>
@@ -21,4 +21,4 @@ public:
 };
 
 
-#endif //BOOST_ECHO_CLIENT_SOCKERRW_H
+#endif //BOOST_ECHO_CLIENT_SOCKETRW_H

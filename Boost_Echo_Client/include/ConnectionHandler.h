@@ -47,7 +47,13 @@ public:
 	
     // Close down the connection properly.
     void close();
- 
+
+    char getBytes(std::string& str);
+
+private:
+    void shortToBytes(short num, char* bytesArr);
+    short bytesToShort(char* bytesArr);
+    char* twoStringBytes(std::string str, char* bytesArr);
 }; //class ConnectionHandler
  
 #endif

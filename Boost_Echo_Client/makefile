@@ -1,17 +1,22 @@
-CFLAGS:=-c -Wall -Weffc++ -g -std=c++11 -Iinclude
-LDFLAGS:=-lboost_system -pthread
+CFLAGS:= -Wall -Weffc++ -g -std=c++11 -Iinclude -lpthread -lboost_thread
+LDFLAGS:=-lboost_system -lpthread -lboost_thread
 
-all: EchoClient
-	g++ -o bin/echoExample bin/connectionHandler.o bin/echoClient.o $(LDFLAGS) 
-
-EchoClient: bin/connectionHandler.o bin/echoClient.o
+all: BGRSClient
+	g++ -o bin/ConnectionHandler.o bin/BGRSClient.o bin/KeyboardReader.o bin/SocketRW.o bin/echoClient.o $(LDFLAGS)
 	
-bin/connectionHandler.o: src/connectionHandler.cpp
-	g++ $(CFLAGS) -o bin/connectionHandler.o src/connectionHandler.cpp
+bin/ConnectionHandler.o: src/ConnectionHandler.cpp
+	g++ $(CFLAGS) -o bin/BGRSClient.o src/ConnectionHandler.cpp
 
-bin/echoClient.o: src/echoClient.cpp
-	g++ $(CFLAGS) -o bin/echoClient.o src/echoClient.cpp
-	
+bin/BGRSClient.o: src/BGRSClient.cpp
+	g++ $(CFLAGS) -o bin/BGRSClient.o src/BGRSClient.cpp
+
+bin/KeyboardReader.o: src/KeyboardReader.cpp
+	g++ $(CFLAGS) -o bin/KeyboardReader.o src/KeyboardReader.cpp
+
+bin/SocketRW.o: src/SocketRW.cpp
+	g++ $(CFLAGS) -o bin/SocketRW.o src/SocketRW.cpp
+
+
 .PHONY: clean
 clean:
 	rm -f bin/*

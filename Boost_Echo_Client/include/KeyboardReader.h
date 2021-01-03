@@ -2,8 +2,8 @@
 // Created by 97254 on 03/01/2021.
 //
 
-#ifndef BOOST_ECHO_CLIENT_TASK_H
-#define BOOST_ECHO_CLIENT_TASK_H
+#ifndef BOOST_ECHO_CLIENT_KEYBOARDREADER_H
+#define BOOST_ECHO_CLIENT_KEYBOARDREADER_H
 #include <mutex>
 #include <string>
 #include <queue>
@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //BOOST_ECHO_CLIENT_TASK_H
+#endif //BOOST_ECHO_CLIENT_KEYBOARDREADER_H

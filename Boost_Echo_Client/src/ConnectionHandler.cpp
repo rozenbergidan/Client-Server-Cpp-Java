@@ -63,7 +63,7 @@ bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
     return true;
 }
  
-bool ConnectionHandler::getLine(std::string& line) {"OPNAME asd 123"
+bool ConnectionHandler::getLine(std::string& line) {
     return getFrameAscii(line, '\n');
 }
 
@@ -72,10 +72,92 @@ bool ConnectionHandler::sendLine(std::string& line) {
     return sendFrameAscii(line, '\n');
 }
 
+void ConnectionHandler::shortToBytes(short num, char* bytesArr)
+{
+    bytesArr[0] = ((num >> 8) & 0xFF);
+    bytesArr[1] = (num & 0xFF);
+}
+short ConnectionHandler::bytesToShort(char* bytesArr)
+{
+    short result = (short)((bytesArr[0] & 0xff) << 8);
+    result += (short)(bytesArr[1] & 0xff);
+    return result;
+}
+char* ConnectionHandler::twoStringBytes(std::string& str){
+
+    std::string temp=str.data();
+    int space1=temp.find(" ");
+    temp=temp.substr(space1);
+    int space2=temp.find(" ");
+    std::string username=temp.substr(0,space2);
+    temp=temp.substr(space2);
+    std::string password=temp;
+
+    char* userNameBytes[]=username.c_str();
+    char* passwordBytes[]=password.c_str();
+    char* output[userNameBytes.length()+passwordBytes.length()+2];
+    for(int i=0;i<userNameBytes.length();i++){
+        output[i]=userNameBytes[i];
+    }
+    output[userNameBytes]='\0';
+    for(int i=0;i<passwordBytes.length();i++){
+        output[i+userNameBytes.length()+1]=password[i];
+    }
+    output[output.length()-1]='\0';
+    return output;
+
+}
+char ConnectionHandler::getBytes(std::string& str){
+    int cnt=str.find(" ");
+    if(cnt==-1){
+        break;
+    }
+
+    std::string temp = str.data();
+    temp=temp.substr(0,cnt);
+
+    char *bytes[2];
+    else if(temp.compare("ADMINREG")==0){
+        shortToBytes(1,bytes);
+        twoStringBytes(str);
+    }
+    else if(temp.compare("STUNDETREG")==0){
+        shortToBytes(2,bytes);
+        twoStringBytes(str);
+    }
+    else if(temp.compare("LOGIN")==0){
+        shortToBytes(3,bytes);
+        twoStringBytes(str);
+    }
+    else if(temp.compare("LOGOUT")==0){
+        shortToBytes(4,bytes);
+    }
+    else if(temp.compare("COURSEREG")==0){
+        shortToBytes(5,bytes);
+    }
+    else if(temp.compare("KDAMCHECK")==0){
+        shortToBytes(6,bytes);
+    }
+    else if(temp.compare("COURSESTAT")==0){
+        shortToBytes(7,bytes);
+    }
+    else if(temp.compare("STUDENTSTAT")==0){
+        shortToBytes(8,bytes);
+    }
+    else if(temp.compare("ISREGISTERED")==0){
+        shortToBytes(9,bytes);
+    }
+    else if(temp.compare("UNREGISTER")==0){
+        shortToBytes(10,bytes);
+    }
+    else if(temp.compare("MYCOURSES")==0){
+        shortToBytes(11,bytes);
+    }
 
 
 
- 
+
+}
 
 bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
     char ch;
