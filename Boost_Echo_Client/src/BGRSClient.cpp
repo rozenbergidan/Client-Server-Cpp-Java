@@ -3,29 +3,25 @@
 //
 
 #include "../include/BGRSClient.h"
+#include <stdlib.h>
 
 public BGRSClient(){
 
 }
-public bool openConnection(std::string serverIP, short port){
-    std::cout << "Starting connect to "
-              << host_ << ":" << port_ << std::endl;
-    try {
-        tcp::endpoint endpoint(boost::asio::ip::address::from_string(host_), port_); // the server endpoint
-        boost::system::error_code error;
-        socket_.connect(endpoint, error);
-        if (error)
-            throw boost::system::system_error(error);
-    }
-    catch (std::exception& e) {
-        std::cerr << "Connection failed (Error: " << e.what() << ')' << std::endl;
+public bool openConnection(std::string serverIP, short _port){
+    std::string host = serverIP;
+    short port = atoi(_port);
+
+    ConnectionHandler connectionHandler(host, port);
+    if (!connectionHandler.connect()) {
+        std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
         return false;
     }
     return true;
 }
 public void run(){
     //From here we will see the rest of the ehco client implementation:
-    while (1) {
+    while (true) {
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
