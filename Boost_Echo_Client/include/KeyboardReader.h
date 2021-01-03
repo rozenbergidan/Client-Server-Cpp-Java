@@ -4,10 +4,17 @@
 
 #ifndef BOOST_ECHO_CLIENT_TASK_H
 #define BOOST_ECHO_CLIENT_TASK_H
+#include <mutex>
+#include <string>
+#include <queue>
+using namespace std;
 
-
-class Task {
-
+class KeyboardReader {
+public:
+    std::mutex & mutex;
+    queue<std::string> messageQueue;
+    KeyboardReader(std::mutex & _mutex);
+    void run();
 };
 
 
