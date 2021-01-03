@@ -9,6 +9,11 @@
         <option name="buildTarget" value="all" />
         <option name="cleanTarget" value="clean" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="C:\Users\97254\Desktop\BGU\2nd\SemA\SPL\Assignment3\spl3\Boost_Echo_Client" />
+          </set>
+        </option>
         <option name="switches" value="--just-print --print-directory --keep-going" />
       </MakefileProjectSettings>
     </option>

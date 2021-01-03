@@ -2,10 +2,7 @@ package bgu.spl.net.impl.BGRS;
 
 import bgu.spl.net.api.MessagingProtocol;
 import bgu.spl.net.impl.Database.Database;
-import bgu.spl.net.impl.Database.User;
-import bgu.spl.net.impl.Database.Student;
 
-import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 
 public class BGRSProtocol implements MessagingProtocol<String> {

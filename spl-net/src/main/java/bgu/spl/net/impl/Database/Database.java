@@ -21,6 +21,7 @@ public class Database {
     private ConcurrentHashMap<String, Admin> admins;
     private ConcurrentHashMap<String, Course> courses;
 
+
     private static class DatabaseHolder{
         private static Database instance = new Database();
     }
@@ -45,6 +46,7 @@ public class Database {
         File file = new File(coursesFilePath);
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
             String line;
+            int index=0;
             while((line=br.readLine())!=null){
                 String[]data = line.split("|");
                 LinkedList<String> kdam=new LinkedList<>();
@@ -53,7 +55,9 @@ public class Database {
                     String[] kdamsCourses = kdams.split(",");
                     kdam.addAll(Arrays.asList(kdamsCourses));
                 }
-                courses.put(data[0], new Course(data[0],data[1],Integer.parseInt(data[3]),kdam));
+                courses.put(data[0], new Course(data[0],data[1],Integer.parseInt(data[3]),kdam,index));
+                index++;
+
         }
         }catch(IOException e){
             return false;
@@ -221,5 +225,8 @@ public class Database {
         }
     }
 
+    public int getIndex(String Cid){
+        return courses.get(Cid).index;
+    }
 
 }

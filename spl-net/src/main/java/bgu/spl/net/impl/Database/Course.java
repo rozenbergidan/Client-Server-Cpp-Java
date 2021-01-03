@@ -9,13 +9,16 @@ public class Course {
     public int capacity;
     public LinkedList<String> students;
     public LinkedList<String> kdams;
-    public Course(String _id, String _name, int _limit,LinkedList<String> _kdams){
+    public int index;
+
+    public Course(String _id, String _name, int _limit,LinkedList<String> _kdams, int _index){
         id=_id;
         name=_name;
         limit=_limit;
         capacity=0;
-        students=new LinkedList<>();//TODO: check what is necessary in the aspect of concurrency!
+        students=new LinkedList<>();
         kdams=_kdams;
+        index=_index;
     }
     public LinkedList<String> getKdams(){
         return kdams;
@@ -24,6 +27,7 @@ public class Course {
         if (students.contains(student)) throw new Exception("student already registered to this course");
         if (capacity > limit)  throw new Exception("tried to registered to full course");
             students.add(student);
+            sort();
             capacity++;
     }
 
@@ -39,9 +43,11 @@ public class Course {
     }
 
     public String status(){
-        //TODO: need to write sorting studuents alphabeticly
         return "("+id+") "+name+"\n"+"Seats available: "+capacity+"\\"+limit+"\n"+"Students Registered:"+students.toString()+"\n";
 
     }
 
+    private void sort(){
+        java.util.Collections.sort(students);
+    }
 }
