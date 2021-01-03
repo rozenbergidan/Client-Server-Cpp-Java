@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/97254/Desktop/BGU/2nd/SemA/SPL/test
+# Install script for directory: C:/Users/97254/Desktop/BGU/2nd/SemA/SPL/Assignment3/spl3/Boost_Echo_Client
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/test")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Boost_Echo_Client")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

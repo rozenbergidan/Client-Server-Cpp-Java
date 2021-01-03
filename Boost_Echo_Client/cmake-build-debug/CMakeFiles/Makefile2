@@ -48,10 +48,10 @@ RM = "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\97254\Desktop\BGU\2nd\SemA\SPL\test
+CMAKE_SOURCE_DIR = C:\Users\97254\Desktop\BGU\2nd\SemA\SPL\Assignment3\spl3\Boost_Echo_Client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\97254\Desktop\BGU\2nd\SemA\SPL\test\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\97254\Desktop\BGU\2nd\SemA\SPL\Assignment3\spl3\Boost_Echo_Client\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory

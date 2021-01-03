@@ -18,6 +18,7 @@ public:
     ConnectionHandler(std::string host, short port);
     virtual ~ConnectionHandler();
 
+    int test();
     // Connect to the remote machine
     bool connect();
 
