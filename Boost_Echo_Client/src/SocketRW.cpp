@@ -4,6 +4,10 @@
 
 
 #include "../include/SocketRW.h"
+#include <mutex>
+#include <string>
+#include <queue>
+#include "ConnectionHandler.h"
 
 SocketRW::SocketRW(std::mutex &_mutex, queue<std::string> & _queue, int _host, int _port):mutex(_mutex),messageQueue(_queue),connectionHandler(host, port) {}
 

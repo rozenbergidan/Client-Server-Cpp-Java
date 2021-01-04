@@ -4,10 +4,7 @@
 
 #ifndef BOOST_ECHO_CLIENT_SOCKETRW_H
 #define BOOST_ECHO_CLIENT_SOCKETRW_H
-#include <mutex>
-#include <string>
-#include <queue>
-#include "ConnectionHandler.h"
+
 
 using namespace std;
 

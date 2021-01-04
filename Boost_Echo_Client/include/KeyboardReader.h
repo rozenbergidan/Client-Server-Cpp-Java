@@ -4,9 +4,7 @@
 
 #ifndef BOOST_ECHO_CLIENT_KEYBOARDREADER_H
 #define BOOST_ECHO_CLIENT_KEYBOARDREADER_H
-#include <mutex>
-#include <string>
-#include <queue>
+
 using namespace std;
 
 class KeyboardReader {

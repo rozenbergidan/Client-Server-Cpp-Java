@@ -3,7 +3,9 @@
 //
 #include <iostream>
 #include "../include/KeyboardReader.h"
-
+#include <mutex>
+#include <string>
+#include <queue>
 
 
 KeyboardReader::KeyboardReader(std::mutex & _mutex, queue<std::string> & queue):mutex(_mutex), messageQueue(queue) {}
