@@ -19,11 +19,11 @@ public:
     // Connect to the remote machine
     bool connect();
 
-    // Read a fixed number of bytes from the server - blocking.
-    // Returns false in case the connection is closed before bytesToRead bytes can be read.
+    // Read a fixed number of opCodeBytes from the server - blocking.
+    // Returns false in case the connection is closed before bytesToRead opCodeBytes can be read.
     bool getBytes(char bytes[], unsigned int bytesToRead);
 
-    // Send a fixed number of bytes from the client - blocking.
+    // Send a fixed number of opCodeBytes from the client - blocking.
     // Returns false in case the connection is closed before all the data is sent.
     bool sendBytes(const char bytes[], int bytesToWrite);
 
@@ -46,7 +46,7 @@ public:
     // Close down the connection properly.
     void close();
 
-    char getBytes(std::string& str);
+    char ConvertToBytes(std::string& str);
 
 private:
     void shortToBytes(short num, char* bytesArr);

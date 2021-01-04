@@ -71,7 +71,8 @@ bool ConnectionHandler::getLine(std::string& line) {
 
 
 bool ConnectionHandler::sendLine(std::string& line) {
-    return sendFrameAscii(line, '\n');
+    //return sendFrameAscii(line, '\n');
+    // get
 }
 
 void ConnectionHandler::shortToBytes(short num, char* bytesArr)
@@ -109,51 +110,51 @@ char* ConnectionHandler::twoStringBytes(std::string& str){
     return output;
 
 }
-char ConnectionHandler::getBytes(std::string& str){
+char[] ConnectionHandler::ConvertToBytes(std::string& str){
     int cnt=str.find(" ");
-    if(cnt==-1){
-        break;
-    }
+//    if(cnt==-1){
+//        return nullptr;
+//    }
 
-    std::string temp = str.substr(0,cnt);
+    std::string operation = str.substr(0, cnt);
 
-    char *bytes[2];
+    char *opCodeBytes;
 
-    else if(temp.compare("ADMINREG")==0){
-        shortToBytes(1,bytes);
+     if(operation.compare("ADMINREG")==0){
+        shortToBytes(1,opCodeBytes);
         twoStringBytes(str);
     }
-    else if(temp.compare("STUNDETREG")==0){
-        shortToBytes(2,bytes);
+    else if(operation.compare("STUNDETREG")==0){
+        shortToBytes(2,opCodeBytes);
         twoStringBytes(str);
     }
-    else if(temp.compare("LOGIN")==0){
-        shortToBytes(3,bytes);
+    else if(operation.compare("LOGIN")==0){
+        shortToBytes(3,opCodeBytes);
         twoStringBytes(str);
     }
-    else if(temp.compare("LOGOUT")==0){
-        shortToBytes(4,bytes);
+    else if(operation.compare("LOGOUT")==0){
+        shortToBytes(4,opCodeBytes);
     }
-    else if(temp.compare("COURSEREG")==0){
-        shortToBytes(5,bytes);
+    else if(operation.compare("COURSEREG")==0){
+        shortToBytes(5,opCodeBytes);
     }
-    else if(temp.compare("KDAMCHECK")==0){
-        shortToBytes(6,bytes);
+    else if(operation.compare("KDAMCHECK")==0){
+        shortToBytes(6,opCodeBytes);
     }
-    else if(temp.compare("COURSESTAT")==0){
-        shortToBytes(7,bytes);
+    else if(operation.compare("COURSESTAT")==0){
+        shortToBytes(7,opCodeBytes);
     }
-    else if(temp.compare("STUDENTSTAT")==0){
-        shortToBytes(8,bytes);
+    else if(operation.compare("STUDENTSTAT")==0){
+        shortToBytes(8,opCodeBytes);
     }
-    else if(temp.compare("ISREGISTERED")==0){
-        shortToBytes(9,bytes);
+    else if(operation.compare("ISREGISTERED")==0){
+        shortToBytes(9,opCodeBytes);
     }
-    else if(temp.compare("UNREGISTER")==0){
-        shortToBytes(10,bytes);
+    else if(operation.compare("UNREGISTER")==0){
+        shortToBytes(10,opCodeBytes);
     }
-    else if(temp.compare("MYCOURSES")==0){
-        shortToBytes(11,bytes);
+    else if(operation.compare("MYCOURSES")==0){
+        shortToBytes(11,opCodeBytes);
     }
 
 
