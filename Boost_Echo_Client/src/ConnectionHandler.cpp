@@ -95,8 +95,8 @@ char* ConnectionHandler::twoStringBytes(std::string& str){
     temp=temp.substr(space2);
     std::string password=temp;
 
-    char* userNameBytes= username.c_str();
-    char* passwordBytes=password.c_str();
+    const char* userNameBytes= username.c_str();
+    const char* passwordBytes=password.c_str();
     char* output[userNameBytes.length()+passwordBytes.length()+2];
     for(int i=0;i<userNameBytes.length();i++){
         output[i]=userNameBytes[i];

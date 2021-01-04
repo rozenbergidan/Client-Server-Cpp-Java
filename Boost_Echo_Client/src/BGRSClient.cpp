@@ -2,12 +2,14 @@
 #include "../include/ConnectionHandler.h"
 #include "../include/KeyboardReader.h"
 #include <mutex>
+#include <iostream>
+#include <thread>
 
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
 */
 int main (int argc, char *argv[]) {
-    queue<std::string> messageQueue();
+    queue<std::string> messageQueue;
     std::mutex mutex;
     if (argc < 3) {
         std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
@@ -24,10 +26,10 @@ int main (int argc, char *argv[]) {
 
     //From here we will see the rest of the ehco client implementation:
     while (1) {
-//        const short bufsize = 1024;
-//        char buf[bufsize];
-//        std::cin.getline(buf, bufsize);
-//        std::string line(buf);
+        const short bufsize = 1024;
+        char buf[bufsize];
+        std::cin.getline(buf, bufsize);
+        std::string line(buf);
         KeyboardReader reader(mutex, messageQueue);
         std::thread readerThread(&KeyboardReader::run, &reader);
         std::thread connectionThread(&KeyboardReader::run, &reader);

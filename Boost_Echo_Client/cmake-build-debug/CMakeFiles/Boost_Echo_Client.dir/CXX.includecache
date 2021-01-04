@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/ConnectionHandler.h
+boost/asio/ip/tcp.hpp
+-
+
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/ConnectionHandler.cpp
+../include/ConnectionHandler.h
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/ConnectionHandler.h
+string
+-
+iostream
+-
+boost/asio.hpp
+-
+
