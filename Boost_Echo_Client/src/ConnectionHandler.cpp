@@ -115,10 +115,10 @@ char ConnectionHandler::getBytes(std::string& str){
         break;
     }
 
-    std::string temp = str.data();
-    temp=temp.substr(0,cnt);
+    std::string temp = str.substr(0,cnt);
 
     char *bytes[2];
+
     else if(temp.compare("ADMINREG")==0){
         shortToBytes(1,bytes);
         twoStringBytes(str);
