@@ -7,21 +7,22 @@
 #include <mutex>
 #include <string>
 #include <queue>
-#include "ConnectionHandler.h"
+#include <iostream>
+#include "../include/ConnectionHandler.h"
 
-SocketRW::SocketRW(std::mutex &_mutex, queue<std::string> & _queue, int _host, int _port):mutex(_mutex),messageQueue(_queue),connectionHandler(host, port) {}
+SocketRW::SocketRW(std::mutex &_mutex, queue<std::string> & _queue, std::string _host, int _port):mutex(_mutex),messageQueue(_queue),connectionHandler(_host, _port) {}
 
 void SocketRW::run() {
     while(1){
         std::string line;
         if(!messageQueue.empty()) {
-            std::lock_guard <std::mutex> lock(_mutex);
+            std::lock_guard <std::mutex> lock(mutex);
             line = messageQueue.front();
             messageQueue.pop();
-            std::lock_guard <std::mutex> unlock(_mutex);
+            std::lock_guard <std::mutex> unlock(mutex);
             int len=line.length();
             if (!connectionHandler.sendLine(line)) {
-                std::cout << "Disconnected. Exiting...\n" << std::endl;
+                cout << "Disconnected. Exiting...\n" << std::endl;
                 break;
             }
             // connectionHandler.sendLine(line) appends '\n' to the message. Therefor we send len+1 bytes.

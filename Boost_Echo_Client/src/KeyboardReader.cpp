@@ -6,19 +6,18 @@
 #include <mutex>
 #include <string>
 #include <queue>
+#include "../include/ConnectionHandler.h"
 
+KeyboardReader::KeyboardReader(std::mutex & _mutex, queue<std::string> & queue): mutex(_mutex), messageQueue(queue) {}
 
-KeyboardReader::KeyboardReader(std::mutex & _mutex, queue<std::string> & queue):mutex(_mutex), messageQueue(queue) {}
-
-std::string KeyboardReader::run() {
+void KeyboardReader::run() {
     while(true) {
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
         std::string line(buf);
-        std::lock_guard<std::mutex> lock(_mutex);
+        std::lock_guard<std::mutex> lock(mutex);
         messageQueue.push(line);
-        std::lock_guard<std::mutex> unlock(_mutex);
-
+        std::lock_guard<std::mutex> unlock(mutex);
     }
 }

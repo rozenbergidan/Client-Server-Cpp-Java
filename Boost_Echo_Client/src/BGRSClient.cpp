@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include "connectionHandler.h"
-#include "KeyboardReader.h"
+#include "../include/ConnectionHandler.h"
+#include "../include/KeyboardReader.h"
 #include <mutex>
 
 /**

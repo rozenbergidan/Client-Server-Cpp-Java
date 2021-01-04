@@ -4,8 +4,10 @@
 
 #ifndef BOOST_ECHO_CLIENT_SOCKETRW_H
 #define BOOST_ECHO_CLIENT_SOCKETRW_H
-
-
+#include "../include/ConnectionHandler.h"
+#include <mutex>
+#include <queue>
+#include <iostream>
 using namespace std;
 
 class SocketRW {
@@ -14,7 +16,7 @@ public:
     queue<std::string> & messageQueue;
     ConnectionHandler connectionHandler;
 
-    SocketRW(std::mutex & _mutex , queue<std::string> & queue,std::string host, int port );
+    SocketRW(std::mutex & _mutex , queue<std::string> & queue,std::string _host, int _port );
     void run();
 };
 

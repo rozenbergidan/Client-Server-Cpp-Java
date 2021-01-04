@@ -1,6 +1,8 @@
 #ifndef CONNECTION_HANDLER__
 #define CONNECTION_HANDLER__
 
+#include <boost/asio/ip/tcp.hpp>
+
 using boost::asio::ip::tcp;
 
 class ConnectionHandler {
@@ -14,7 +16,6 @@ public:
     ConnectionHandler(std::string host, short port);
     virtual ~ConnectionHandler();
 
-    int test();
     // Connect to the remote machine
     bool connect();
 
@@ -50,7 +51,7 @@ public:
 private:
     void shortToBytes(short num, char* bytesArr);
     short bytesToShort(char* bytesArr);
-    char* twoStringBytes(std::string str, char* bytesArr);
+    char* twoStringBytes(std::string &str);
 }; //class ConnectionHandler
 
 #endif

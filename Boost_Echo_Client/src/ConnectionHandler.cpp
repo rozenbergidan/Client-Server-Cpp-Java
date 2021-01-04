@@ -1,4 +1,4 @@
-#include "ConnectionHandler.h"
+#include "../include/ConnectionHandler.h"
 #include <string>
 #include <iostream>
 #include <boost/asio.hpp>
@@ -95,8 +95,8 @@ char* ConnectionHandler::twoStringBytes(std::string& str){
     temp=temp.substr(space2);
     std::string password=temp;
 
-    char* userNameBytes[]=username.c_str();
-    char* passwordBytes[]=password.c_str();
+    char* userNameBytes= username.c_str();
+    char* passwordBytes=password.c_str();
     char* output[userNameBytes.length()+passwordBytes.length()+2];
     for(int i=0;i<userNameBytes.length();i++){
         output[i]=userNameBytes[i];

@@ -4,9 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/97254/Desktop/BGU/2nd/SemA/SPL/Assignment3/spl3/Boost_Echo_Client/main.cpp" "C:/Users/97254/Desktop/BGU/2nd/SemA/SPL/Assignment3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/main.cpp.obj"
+  "/home/spl211/Desktop/Projects/ASS3/spl3/Boost_Echo_Client/src/BGRSClient.cpp" "/home/spl211/Desktop/Projects/ASS3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o"
+  "/home/spl211/Desktop/Projects/ASS3/spl3/Boost_Echo_Client/src/ConnectionHandler.cpp" "/home/spl211/Desktop/Projects/ASS3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.o"
+  "/home/spl211/Desktop/Projects/ASS3/spl3/Boost_Echo_Client/src/KeyboardReader.cpp" "/home/spl211/Desktop/Projects/ASS3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o"
+  "/home/spl211/Desktop/Projects/ASS3/spl3/Boost_Echo_Client/src/SocketRW.cpp" "/home/spl211/Desktop/Projects/ASS3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
