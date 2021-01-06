@@ -54,28 +54,36 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         return err(Short.parseShort(splitMsg[0]));
     }
 
-    private String adminReg(String[] str){
+    private String adminReg(String[] str) {
         //check if the str[1] is already register in the database - send ERROR 1
         //if not register, add new pair in database with username: str[1] and pass: str[2]
-        try{
-        Database.getInstance().adminReg(str[1],str[2]);
-        }
-        catch(Exception e){
+        //if the client is logged in - send ERROR 1
+        if (loggedIn) {
             return err(command.ADMINREG);
+        } else {
+            try {
+                Database.getInstance().adminReg(str[1], str[2]);
+            } catch (Exception e) {
+                return err(command.ADMINREG);
+            }
+            return ack(command.ADMINREG);
         }
-        return ack(command.ADMINREG);
     }
-
-    private String studentReg(String[]str){
+    private String studentReg(String[]str) {
         //check if the str[1] is already register in the database - return ERROR 2
         //return "ERROR 2 - Student already registered"
         //if not register, add new pair in database with username: str[1] and pass: str[2]
-        try{
-        Database.getInstance().studentReg(str[1],str[2]);
-        }catch(Exception e){
+        //if the client is logged in - send ERROR 2
+        if (loggedIn) {
             return err(command.STUDENTREG);
+        } else {
+            try {
+                Database.getInstance().studentReg(str[1], str[2]);
+            } catch (Exception e) {
+                return err(command.STUDENTREG);
+            }
+            return ack(command.STUDENTREG);
         }
-        return ack(command.STUDENTREG);
     }
 
     private String login(String[]str){
@@ -194,7 +202,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     private String myCourses(String[]str){
-        String output;
         if(!loggedIn){
             return err(command.MYCOURSES);
         }

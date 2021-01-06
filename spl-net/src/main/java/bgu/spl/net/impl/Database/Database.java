@@ -94,7 +94,7 @@ public class Database {
     public String courseStatus(String Cid, String admin) throws Exception{
         admin=admin.toLowerCase();
         if(!admins.containsKey(admin)) throw new Exception("the user that call this function is not an admin");
-        if(!courses.containsKey(Cid)) throw new Exception("the user that call this function is not a student");
+        if(!courses.containsKey(Cid)) throw new Exception("invalid course id");
         return courses.get(Cid).status();
     }
     /**
@@ -102,7 +102,7 @@ public class Database {
      */
     public String isRegistered(String Cid, String student) throws Exception{
         student=student.toLowerCase();
-        if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
+        if (!courses.containsKey(Cid)) throw new Exception("course id not exist");
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         return courses.get(Cid).isRegistered(student);
 
