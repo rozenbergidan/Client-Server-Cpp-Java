@@ -1,3 +1,0 @@
-/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir

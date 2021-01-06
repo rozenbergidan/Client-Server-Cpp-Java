@@ -2,7 +2,6 @@ package bgu.spl.net.impl.Database;
 
 import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Student extends User {
     private LinkedList<String> courses;
