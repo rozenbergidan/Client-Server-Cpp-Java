@@ -87,9 +87,6 @@
 		<Unit filename="/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/ConnectionHandler.h">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
-		<Unit filename="/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/KeyboardReader.h">
-			<Option target="Boost_Echo_Client"/>
-		</Unit>
 		<Unit filename="/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/SocketRW.h">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
@@ -99,7 +96,7 @@
 		<Unit filename="/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/ConnectionHandler.cpp">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
-		<Unit filename="/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/KeyboardReader.cpp">
+		<Unit filename="/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/InputHendler.cpp">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
 		<Unit filename="/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/SocketRW.cpp">

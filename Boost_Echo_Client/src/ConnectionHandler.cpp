@@ -71,8 +71,36 @@ bool ConnectionHandler::getLine(std::string& line) {
 
 
 bool ConnectionHandler::sendLine(std::string& line) {
-    //return sendFrameAscii(line, '\n');
+    return sendFrameAscii(line, '\n');
     // get
+}
+
+
+
+
+char* ConnectionHandler::twoStringBytes(std::string& str){
+
+//    std::string temp=str.data();
+//    int space1=temp.find(" ");
+//    temp=temp.substr(space1);
+//    int space2=temp.find(" ");
+//    std::string username=temp.substr(0,space2);
+//    temp=temp.substr(space2);
+//    std::string password=temp;
+//
+//    const char* userNameBytes= username.c_str();
+//    const char* passwordBytes=password.c_str();
+//    char* output[userNameBytes.length()+passwordBytes.length()+2];
+//    for(int i=0;i<userNameBytes.length();i++){
+//        output[i]=userNameBytes[i];
+//    }
+//    output[userNameBytes]='\0';
+//    for(int i=0;i<passwordBytes.length();i++){
+//        output[i+userNameBytes.length()+1]=password[i];
+//    }
+//    output[output.length()-1]='\0';
+//    return output;
+
 }
 
 void ConnectionHandler::shortToBytes(short num, char* bytesArr)
@@ -80,37 +108,16 @@ void ConnectionHandler::shortToBytes(short num, char* bytesArr)
     bytesArr[0] = ((num >> 8) & 0xFF);
     bytesArr[1] = (num & 0xFF);
 }
+
 short ConnectionHandler::bytesToShort(char* bytesArr)
 {
     short result = (short)((bytesArr[0] & 0xff) << 8);
     result += (short)(bytesArr[1] & 0xff);
     return result;
 }
-char* ConnectionHandler::twoStringBytes(std::string& str){
 
-    std::string temp=str.data();
-    int space1=temp.find(" ");
-    temp=temp.substr(space1);
-    int space2=temp.find(" ");
-    std::string username=temp.substr(0,space2);
-    temp=temp.substr(space2);
-    std::string password=temp;
 
-    const char* userNameBytes= username.c_str();
-    const char* passwordBytes=password.c_str();
-    char* output[userNameBytes.length()+passwordBytes.length()+2];
-    for(int i=0;i<userNameBytes.length();i++){
-        output[i]=userNameBytes[i];
-    }
-    output[userNameBytes]='\0';
-    for(int i=0;i<passwordBytes.length();i++){
-        output[i+userNameBytes.length()+1]=password[i];
-    }
-    output[output.length()-1]='\0';
-    return output;
-
-}
-char[] ConnectionHandler::ConvertToBytes(std::string& str){
+void ConnectionHandler::ConvertToBytes(std::string& str){
     int cnt=str.find(" ");
 //    if(cnt==-1){
 //        return nullptr;
@@ -118,15 +125,28 @@ char[] ConnectionHandler::ConvertToBytes(std::string& str){
 
     std::string operation = str.substr(0, cnt);
 
-    char *opCodeBytes;
+    char opCodeBytes[str.size()];
 
      if(operation.compare("ADMINREG")==0){
         shortToBytes(1,opCodeBytes);
-        twoStringBytes(str);
+        string  s = "";
+        s= opCodeBytes[0] + opCodeBytes[1];
+        cout<< s;
+        //twoStringBytes(str);
+        const char * arr = str.c_str();
+        int i = 0;
+        while(*(arr + i) != '\0'){
+            if(*(arr + i) == ' '){
+
+            }
+        }
     }
     else if(operation.compare("STUNDETREG")==0){
         shortToBytes(2,opCodeBytes);
         twoStringBytes(str);
+        for (int i = 0; i < str.length();i= i + 1){
+
+        }
     }
     else if(operation.compare("LOGIN")==0){
         shortToBytes(3,opCodeBytes);
@@ -157,8 +177,7 @@ char[] ConnectionHandler::ConvertToBytes(std::string& str){
         shortToBytes(11,opCodeBytes);
     }
 
-
-
+    
 
 }
 
@@ -188,6 +207,7 @@ bool ConnectionHandler::sendFrameAscii(const std::string& frame, char delimiter)
     if(!result) return false;
     return sendBytes(&delimiter,1);
 }
+
 
 // Close down the connection properly.
 void ConnectionHandler::close() {

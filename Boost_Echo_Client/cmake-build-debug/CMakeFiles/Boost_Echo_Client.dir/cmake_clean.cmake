@@ -3,7 +3,7 @@ file(REMOVE_RECURSE
   "Boost_Echo_Client.pdb"
   "CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o"
   "CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.o"
-  "CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o"
+  "CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.o"
   "CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o"
 )
 

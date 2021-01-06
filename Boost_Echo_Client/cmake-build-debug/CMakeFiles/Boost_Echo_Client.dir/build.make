@@ -103,22 +103,9 @@ CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/ConnectionHandler.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.s
 
-CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
-CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o: ../src/KeyboardReader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o -c /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/KeyboardReader.cpp
-
-CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/KeyboardReader.cpp > CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.i
-
-CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/KeyboardReader.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.s
-
 CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
 CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o: ../src/SocketRW.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o -c /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/SocketRW.cpp
 
 CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.i: cmake_force
@@ -129,20 +116,33 @@ CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/SocketRW.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.s
 
+CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
+CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.o: ../src/InputHendler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.o -c /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/InputHendler.cpp
+
+CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/InputHendler.cpp > CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.i
+
+CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/InputHendler.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.s
+
 # Object files for target Boost_Echo_Client
 Boost_Echo_Client_OBJECTS = \
 "CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o" \
 "CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.o" \
-"CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o" \
-"CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o"
+"CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o" \
+"CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.o"
 
 # External object files for target Boost_Echo_Client
 Boost_Echo_Client_EXTERNAL_OBJECTS =
 
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.o
-Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/SocketRW.cpp.o
+Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/build.make
 Boost_Echo_Client: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 Boost_Echo_Client: /usr/lib/x86_64-linux-gnu/libboost_regex.so

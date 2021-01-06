@@ -46,9 +46,8 @@ public:
     // Close down the connection properly.
     void close();
 
-    char ConvertToBytes(std::string& str);
+    void ConvertToBytes(std::string& str);
 
-private:
     void shortToBytes(short num, char* bytesArr);
     short bytesToShort(char* bytesArr);
     char* twoStringBytes(std::string &str);

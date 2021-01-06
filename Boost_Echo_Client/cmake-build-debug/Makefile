@@ -197,32 +197,32 @@ src/ConnectionHandler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.s
 .PHONY : src/ConnectionHandler.cpp.s
 
-src/KeyboardReader.o: src/KeyboardReader.cpp.o
+src/InputHendler.o: src/InputHendler.cpp.o
 
-.PHONY : src/KeyboardReader.o
+.PHONY : src/InputHendler.o
 
 # target to build an object file
-src/KeyboardReader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.o
-.PHONY : src/KeyboardReader.cpp.o
+src/InputHendler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.o
+.PHONY : src/InputHendler.cpp.o
 
-src/KeyboardReader.i: src/KeyboardReader.cpp.i
+src/InputHendler.i: src/InputHendler.cpp.i
 
-.PHONY : src/KeyboardReader.i
+.PHONY : src/InputHendler.i
 
 # target to preprocess a source file
-src/KeyboardReader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.i
-.PHONY : src/KeyboardReader.cpp.i
+src/InputHendler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.i
+.PHONY : src/InputHendler.cpp.i
 
-src/KeyboardReader.s: src/KeyboardReader.cpp.s
+src/InputHendler.s: src/InputHendler.cpp.s
 
-.PHONY : src/KeyboardReader.s
+.PHONY : src/InputHendler.s
 
 # target to generate assembly for a file
-src/KeyboardReader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/KeyboardReader.cpp.s
-.PHONY : src/KeyboardReader.cpp.s
+src/InputHendler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/InputHendler.cpp.s
+.PHONY : src/InputHendler.cpp.s
 
 src/SocketRW.o: src/SocketRW.cpp.o
 
@@ -266,9 +266,9 @@ help:
 	@echo "... src/ConnectionHandler.o"
 	@echo "... src/ConnectionHandler.i"
 	@echo "... src/ConnectionHandler.s"
-	@echo "... src/KeyboardReader.o"
-	@echo "... src/KeyboardReader.i"
-	@echo "... src/KeyboardReader.s"
+	@echo "... src/InputHendler.o"
+	@echo "... src/InputHendler.i"
+	@echo "... src/InputHendler.s"
 	@echo "... src/SocketRW.o"
 	@echo "... src/SocketRW.i"
 	@echo "... src/SocketRW.s"
