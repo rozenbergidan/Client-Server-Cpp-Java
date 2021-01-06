@@ -1,4 +1,4 @@
-#include "../include/connectionHandler.h"
+#include "../include/ConnectionHandler.h"
 
 using boost::asio::ip::tcp;
 
@@ -64,7 +64,7 @@ bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
 }
 
 bool ConnectionHandler::getLine(std::string& line) {
-    return getFrameAscii(line, '\n');
+    return getFrameAscii(line, '\0');
 }
 
 bool ConnectionHandler::sendLine(std::string& line) {

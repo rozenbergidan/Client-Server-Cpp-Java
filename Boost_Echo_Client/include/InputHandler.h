@@ -6,7 +6,7 @@
 #define BOOST_ECHO_CLIENT_INPUTHENDLER_H
 #include <mutex>
 #include "ConnectionHandler.h"
-#include <queue>
+
 
 
 class InputHandler {
