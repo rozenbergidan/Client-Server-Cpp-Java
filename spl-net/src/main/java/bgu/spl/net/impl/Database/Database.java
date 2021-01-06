@@ -48,14 +48,15 @@ public class Database {
             String line;
             int index=0;
             while((line=br.readLine())!=null){
-                String[]data = line.split("|");
+                String[]data = line.split("\\|");
                 LinkedList<String> kdam=new LinkedList<>();
                 if(data[2].length()!=2) {
                     String kdams = data[2].substring(1, data[2].length() - 1);
                     String[] kdamsCourses = kdams.split(",");
                     kdam.addAll(Arrays.asList(kdamsCourses));
                 }
-                courses.put(data[0], new Course(data[0],data[1],Integer.parseInt(data[3]),kdam,index));
+                Course course=new Course(data[0],data[1],Integer.parseInt(data[3]),kdam,index);
+                courses.put(data[0], course);
                 index++;
 
         }
@@ -115,6 +116,9 @@ public class Database {
         if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         courses.get(Cid).unregister(student);
+        students.get(student).unregister(Cid);
+
+
     }
 
     /**

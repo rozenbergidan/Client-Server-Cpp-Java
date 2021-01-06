@@ -7,9 +7,10 @@ public class Course {
     public String name;
     public int limit;
     public int capacity;
+    public int index;
     public LinkedList<String> students;
     public LinkedList<String> kdams;
-    public int index;
+
 
     public Course(String _id, String _name, int _limit,LinkedList<String> _kdams, int _index){
         id=_id;
@@ -20,6 +21,7 @@ public class Course {
         kdams=_kdams;
         index=_index;
     }
+
     public LinkedList<String> getKdams(){
         return kdams;
     }

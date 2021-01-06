@@ -17,6 +17,9 @@ public class Student extends User {
         sort();
     }
 
+    public void unregister(String Cid){
+        courses.remove(Cid);
+    }
     private void sort(){
         courses.sort(Comparator.comparingInt(x -> Database.getInstance().getIndex(x)));
         }
