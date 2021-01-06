@@ -1,0 +1,5 @@
+"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" C:\Users\97254\Desktop\BGU\2nd\SemA\SPL\Assignment3\spl3\Boost_Echo_Client
+-- Could NOT find Boost (missing: Boost_INCLUDE_DIR filesystem regex) (Required is at least version "1.45.0")
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/97254/Desktop/BGU/2nd/SemA/SPL/Assignment3/spl3/Boost_Echo_Client/cmake-build-debug

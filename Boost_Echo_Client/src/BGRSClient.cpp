@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "../include/ConnectionHandler.h"
-#include "../include/InputHendler.h"
+#include "../include/InputHandler.h"
 #include <mutex>
 #include <iostream>
 #include <thread>
@@ -26,8 +26,8 @@ int main (int argc, char *argv[]) {
     }
 
     std::mutex mutex;
-    InputHendler inputHendler(mutex,connectionHandler);
-    std::thread inputThread(&InputHendler::run, &inputHendler);
+    InputHandler inputHandler(mutex,connectionHandler);
+    std::thread inputThread(&InputHandler::run, &inputHandler);
     inputThread.join();
 
     //From here we will see the rest of the ehco client implementation:

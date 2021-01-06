@@ -1,7 +1,9 @@
 #ifndef CONNECTION_HANDLER__
 #define CONNECTION_HANDLER__
 
-#include <boost/asio/ip/tcp.hpp>
+#include <string>
+#include <iostream>
+#include <boost/asio.hpp>
 
 using boost::asio::ip::tcp;
 
@@ -19,11 +21,11 @@ public:
     // Connect to the remote machine
     bool connect();
 
-    // Read a fixed number of opCodeBytes from the server - blocking.
-    // Returns false in case the connection is closed before bytesToRead opCodeBytes can be read.
+    // Read a fixed number of bytes from the server - blocking.
+    // Returns false in case the connection is closed before bytesToRead bytes can be read.
     bool getBytes(char bytes[], unsigned int bytesToRead);
 
-    // Send a fixed number of opCodeBytes from the client - blocking.
+    // Send a fixed number of bytes from the client - blocking.
     // Returns false in case the connection is closed before all the data is sent.
     bool sendBytes(const char bytes[], int bytesToWrite);
 
@@ -46,11 +48,6 @@ public:
     // Close down the connection properly.
     void close();
 
-    void ConvertToBytes(std::string& str);
-
-    void shortToBytes(short num, char* bytesArr);
-    short bytesToShort(char* bytesArr);
-    char* twoStringBytes(std::string &str);
 }; //class ConnectionHandler
 
 #endif

@@ -9,9 +9,9 @@
 #include <queue>
 
 
-class InputHendler {
+class InputHandler {
 public:
-    InputHendler(std::mutex & _mutex, ConnectionHandler &_connectionHandler);
+    InputHandler(std::mutex & _mutex, ConnectionHandler &_connectionHandler);
     void run( );
 
 private:
@@ -19,14 +19,14 @@ private:
     std::mutex & mutex;
     ConnectionHandler &connectionHandler;
 
-    void oprationToCharArr(std::string operation, char output[]);
-    void opTofullMessage(std::string opCode,std::string line, char output[]);
+    void operationToCharArr(std::string operation, char *output);
+    void opToFullMessage(std::string opCode, std::string line, char *output);
     void shortToBytes(short num, char* bytesArr);
     int getRestArrSize(std::string operation, std::string restOfLine);
     void stringToCharArr(std::string srt, char output[]);
     short stringToShort(std::string numAsString);
 
-    void vetifyValidInput(std::string &input);
+    void verifyValidInput(std::string &input);
 };
 
 

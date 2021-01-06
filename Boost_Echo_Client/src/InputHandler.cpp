@@ -4,14 +4,14 @@
 
 #include <iostream>
 
-#include "../include/InputHendler.h"
+#include "../include/InputHandler.h"
 #include <exception>
 
 
 //InputHendler::InputHendler(std::mutex & _mutex, std::queue<char[]> & queue): mutex(_mutex), messageQueue(queue) {}
-InputHendler::InputHendler(std::mutex & _mutex, ConnectionHandler &_connectionHandler): mutex(_mutex), connectionHandler(_connectionHandler){}
+InputHandler::InputHandler(std::mutex & _mutex, ConnectionHandler &_connectionHandler): mutex(_mutex), connectionHandler(_connectionHandler){}
 
-void InputHendler::run(){//) {
+void InputHandler::run(){//) {
     while(true) {
         const short bufsize = 1024;
         char buf[bufsize];
@@ -47,13 +47,13 @@ void InputHendler::run(){//) {
     }
 }
 
-void InputHendler::shortToBytes(short num, char* bytesArr)
+void InputHandler::shortToBytes(short num, char* bytesArr)
 {
     bytesArr[0] = ((num >> 8) & 0xFF);
     bytesArr[1] = (num & 0xFF);
 }
 
-void InputHendler::oprationToCharArr(std::string operation, char output[]){
+void InputHandler::operationToCharArr(std::string operation, char *output){
     if(operation.compare("ADMINREG")==0){
         shortToBytes(1,output);
     }
@@ -89,42 +89,42 @@ void InputHendler::oprationToCharArr(std::string operation, char output[]){
     }
 }
 
-void InputHendler::opTofullMessage(std::string operation, std::string line, char output[]) {
-    if(operation.compare("ADMINREG")==0){
+void InputHandler::opToFullMessage(std::string opCode, std::string line, char *output) {
+    if(opCode.compare("ADMINREG") == 0){
         stringToCharArr(line,output);
     }
-    else if(operation.compare("STUDENTREG")==0){
+    else if(opCode.compare("STUDENTREG") == 0){
         stringToCharArr(line,output);
     }
-    else if(operation.compare("LOGIN")==0){
+    else if(opCode.compare("LOGIN") == 0){
         stringToCharArr(line,output);
     }
-    else if(operation.compare("LOGOUT")==0){
+    else if(opCode.compare("LOGOUT") == 0){
     }
-    else if(operation.compare("COURSEREG")==0){
+    else if(opCode.compare("COURSEREG") == 0){
         shortToBytes(stringToShort(line),output);
     }
-    else if(operation.compare("KDAMCHECK")==0){
+    else if(opCode.compare("KDAMCHECK") == 0){
         shortToBytes(stringToShort(line),output);
     }
-    else if(operation.compare("COURSESTAT")==0){
+    else if(opCode.compare("COURSESTAT") == 0){
         shortToBytes(stringToShort(line),output);
     }
-    else if(operation.compare("STUDENTSTAT")==0){
+    else if(opCode.compare("STUDENTSTAT") == 0){
         stringToCharArr(line,output);
     }
-    else if(operation.compare("ISREGISTERED")==0){
+    else if(opCode.compare("ISREGISTERED") == 0){
         shortToBytes(stringToShort(line),output);
     }
-    else if(operation.compare("UNREGISTER")==0){
+    else if(opCode.compare("UNREGISTER") == 0){
         shortToBytes(stringToShort(line),output);
     }
-    else if(operation.compare("MYCOURSES")==0){
+    else if(opCode.compare("MYCOURSES") == 0){
     }
     else throw std::exception();
 }
 
-void InputHendler::stringToCharArr(std::string line, char output[]) {//if you use this fuction it is up to you to make sure that output.length is line.length + 1
+void InputHandler::stringToCharArr(std::string line, char output[]) {//if you use this fuction it is up to you to make sure that output.length is line.length + 1
     const char* lineBytes= line.c_str();
     for(int i = 0; i < line.length(); i++){
         if(lineBytes[i] != ' '){
@@ -137,7 +137,7 @@ void InputHendler::stringToCharArr(std::string line, char output[]) {//if you us
     output[line.length()]='\0';
 }
 
-int InputHendler::getRestArrSize(std::string operation, std::string restOfTheLine) {
+int InputHandler::getRestArrSize(std::string operation, std::string restOfTheLine) {
     if(operation.compare("ADMINREG")==0){
         return restOfTheLine.length() + 1;
     }
@@ -173,7 +173,7 @@ int InputHendler::getRestArrSize(std::string operation, std::string restOfTheLin
     }
 }
 
-short InputHendler::stringToShort(std::string numAsString) {// if you use this function it is up to ypu to use try, catch and print to the user the message.
+short InputHandler::stringToShort(std::string numAsString) {// if you use this function it is up to ypu to use try, catch and print to the user the message.
     short p = 1;
     short output = 0;
     for ( int i = numAsString.length()-1; i >= 0; i--){
@@ -184,7 +184,7 @@ short InputHendler::stringToShort(std::string numAsString) {// if you use this f
     return output;
 }
 
-void InputHendler::vetifyValidInput(std::string &input) {
+void InputHandler::verifyValidInput(std::string &input) {
     int spaceCount = 0;
     for(int i = 0; i < input.length(); i++){
         if(!(input[i]<='9' && input[i]>='0') && !(input[i]<='Z' && input[i]>='A') && !(input[i]<='z' && input[i]>='a') && input[i]!=' ') throw std::exception();
