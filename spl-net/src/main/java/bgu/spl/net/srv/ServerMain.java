@@ -6,24 +6,21 @@ import bgu.spl.net.impl.Database.Database;
 import bgu.spl.net.impl.echo.EchoProtocol;
 import bgu.spl.net.impl.echo.LineMessageEncoderDecoder;
 
+import javax.xml.crypto.Data;
 import java.util.Dictionary;
 
 public class ServerMain {
     public static void main(String[] args){
         try(Reactor<String> reactor = new Reactor<>(10,7777,()->new BGRSProtocol(),()->new BGRSEncoderDecoder())){
-            Database.getInstance().initialize("./Courses.txt");
-            Database database= Database.getInstance();
+//            Database.getInstance().initialize("./Courses.txt");
+//            Database.getInstance().adminReg("idan","123");
+//            Database.getInstance().studentReg("tsuri","123");
+//
+//            Database database= Database.getInstance();
+
+
             reactor.serve();
         }catch (Exception e){}
 
-//        try(Server<String> reactor = new BaseServer<String>(7777, () -> new BGRSProtocol(), () -> new BGRSEncoderDecoder()) {
-//            @Override
-//            protected void execute(BlockingConnectionHandler handler) {
-//                new Thread(handler).start();
-//            }
-//        }){
-//            Database.getInstance().initialize("../Courses.txt");
-//            reactor.serve();
-//        }catch (Exception e){}
     }
 }

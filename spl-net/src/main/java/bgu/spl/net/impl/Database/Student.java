@@ -14,9 +14,11 @@ public class Student extends User {
 
     public void register(String courseNum){
         courses.add(courseNum);
-        sort();
     }
 
+    public void unregister(String Cid){
+        courses.remove(Cid);
+    }
     private void sort(){
         courses.sort(Comparator.comparingInt(x -> Database.getInstance().getIndex(x)));
         }
@@ -29,6 +31,7 @@ public class Student extends User {
         return false;
     }
     public LinkedList<String> myCourses(){
+        sort();
         return courses;
     }
 
