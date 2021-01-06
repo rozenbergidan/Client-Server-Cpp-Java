@@ -115,13 +115,9 @@ public class Database {
         student=student.toLowerCase();
         if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
-        if(courses.get(Cid).isRegistered(student).equals("NOT REGISTERED")){
-            throw new Exception("the students isnt registered to this course");
-        }
-        else{
-            courses.get(Cid).unregister(student);
-            students.get(student).unregister(Cid);
-        }
+        courses.get(Cid).unregister(student);
+        students.get(student).unregister(Cid);
+
 
     }
 

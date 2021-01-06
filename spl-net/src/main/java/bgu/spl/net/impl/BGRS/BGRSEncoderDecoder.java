@@ -62,6 +62,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         else if(len == 1){
             pushByte(nextByte);
             short opCode = bytesToShort(bytes);
+
             //factoryMethod
             decoder = getDecoder(opCode);
             return decoder.isDone();
@@ -69,7 +70,6 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             return decoder.nextByte(nextByte);
         }
         return null;
-
     }
 
 
