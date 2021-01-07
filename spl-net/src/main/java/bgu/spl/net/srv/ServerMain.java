@@ -13,8 +13,8 @@ public class ServerMain {
     public static void main(String[] args){
         try(Reactor<String> reactor = new Reactor<>(10,7777,()->new BGRSProtocol(),()->new BGRSEncoderDecoder())){
             Database.getInstance().initialize("./Courses.txt");
-            Database.getInstance().adminReg("idan","123");
-            Database.getInstance().studentReg("tsuri","123");
+//            Database.getInstance().adminReg("idan","123");
+//            Database.getInstance().studentReg("tsuri","123");
 //            Database.getInstance().courseReg("6","tsuri");
 //            Database.getInstance().courseReg("1","tsuri");
 //            Database.getInstance().courseReg("2","tsuri");

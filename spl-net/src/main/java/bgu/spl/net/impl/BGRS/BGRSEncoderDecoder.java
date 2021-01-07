@@ -89,7 +89,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
     }
 
     private String  bytesToString(byte[] b){
-    String result =new String(b, 0, len, StandardCharsets.UTF_8);
+    String result =new String(b, 0, b.length, StandardCharsets.UTF_8);
     return result;
     }
 
