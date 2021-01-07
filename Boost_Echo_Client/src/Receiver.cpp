@@ -31,11 +31,13 @@ void Receiver::run(){
                     std::cout << "Disconnected. Exiting...\n" << std::endl;
                     break;
                 }
-                std::cout << "ACK " + std::to_string(receivedAboutOpCode) + message;
-            } else std::cout << "ACK " + std::to_string(receivedAboutOpCode);
+                std::cout << "ACK " << std::to_string(receivedAboutOpCode) << " " << message << std::endl;
+            } else {
+                std::cout << "ACK " << std::to_string(receivedAboutOpCode) << std::endl;
+            }
         }
         else if(opCode == 13){
-            std::cout<< "ERR " +std::to_string(receivedAboutOpCode);
+            std::cout<< "ERR " << std::to_string(receivedAboutOpCode) << std::endl;
         }
         else{
             std::cout<<"something went wrong... opCode is not error nor ack";

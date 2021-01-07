@@ -127,7 +127,8 @@ void InputHandler::opToFullMessage(std::string opCode, std::string line, char *o
 
 void InputHandler::stringToCharArr(std::string line, char output[]) {//if you use this fuction it is up to you to make sure that output.length is line.length + 1
     const char* lineBytes= line.c_str();
-    for(int i = 0; i < line.length(); i++){
+    int length= line.length();
+    for(int i = 0; i < length; i++){
         if(lineBytes[i] != ' '){
             output[i] = lineBytes[i];
         }
@@ -172,6 +173,8 @@ int InputHandler::getRestArrSize(std::string operation, std::string restOfTheLin
     else if(operation.compare("MYCOURSES")==0){
         return 0;
     }
+
+    return 40;
 }
 
 short InputHandler::stringToShort(std::string numAsString) {// if you use this function it is up to ypu to use try, catch and print to the user the message.
@@ -187,7 +190,8 @@ short InputHandler::stringToShort(std::string numAsString) {// if you use this f
 
 void InputHandler::verifyValidInput(std::string &input) {
     int spaceCount = 0;
-    for(int i = 0; i < input.length(); i++){
+    int length=input.length();
+    for(int i = 0; i < length; i++){
         if(!(input[i]<='9' && input[i]>='0') && !(input[i]<='Z' && input[i]>='A') && !(input[i]<='z' && input[i]>='a') && input[i]!=' ') throw std::exception();
         if(i != 0){
             if(input[i-1] == ' ' && input[i] == ' ' ) throw std::exception();
