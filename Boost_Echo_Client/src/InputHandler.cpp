@@ -143,7 +143,7 @@ int InputHandler::getRestArrSize(std::string operation, std::string restOfTheLin
     if(operation.compare("ADMINREG")==0){
         return restOfTheLine.length() + 1;
     }
-    else if(operation.compare("STUNDETREG")==0){
+    else if(operation.compare("STUDENTREG")==0){
         return  restOfTheLine.length() + 1;
     }
     else if(operation.compare("LOGIN")==0){

@@ -30,6 +30,7 @@ public class Database {
         students=new ConcurrentHashMap<>();
         admins=new ConcurrentHashMap<>();
         courses=new ConcurrentHashMap<>();
+        initialize("./Courses.txt");
     }
 
     /**
@@ -81,9 +82,6 @@ public class Database {
 
     }
 
-    /**
-     *
-     */
     public String studentStatus(String student, String admin) throws Exception{
         admin=admin.toLowerCase();
         student=student.toLowerCase();
@@ -98,9 +96,7 @@ public class Database {
         if(!courses.containsKey(Cid)) throw new Exception("invalid course id");
         return courses.get(Cid).status();
     }
-    /**
-     *
-     */
+
     public String isRegistered(String Cid, String student) throws Exception{
         student=student.toLowerCase();
         if (!courses.containsKey(Cid)) throw new Exception("course id not exist");
@@ -108,38 +104,22 @@ public class Database {
         return courses.get(Cid).isRegistered(student);
 
     }
-    /**
-     *
-     */
-    public void unregister(String Cid, String student) throws Exception{
-        student=student.toLowerCase();
-        if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
-        if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
-        courses.get(Cid).unregister(student);
-        students.get(student).unregister(Cid);
 
+    public void unregister(String Cid, String student) throws Exception{
+        String lstudent=student.toLowerCase();
+        if (!courses.containsKey(Cid)) throw new Exception("course id not exsist");
+        if(!students.containsKey(lstudent)) throw new Exception("the user that call this function is not a student");
+        courses.get(Cid).unregister(lstudent);
+        students.get(lstudent).unregister(Cid);
 
     }
 
-    /**
-     *
-     * @param student
-     * @return
-     * @throws Exception
-     */
     public String myCourses(String student) throws Exception{
         student=student.toLowerCase();
         if(!students.containsKey(student)) throw new Exception("the user that call this function is not a student");
         return students.get(student).myCourses().toString();
     }
 
-
-    /**
-     *
-     * @param username
-     * @param password
-     * @throws Exception
-     */
     public void studentReg(String username, String password)throws Exception{
         String lusername=username.toLowerCase();
         if(students.containsKey(lusername)){
@@ -151,13 +131,6 @@ public class Database {
         students.put(lusername, new Student(lusername,password));
     }
 
-    /**
-     *
-     * @param username
-     * @param password
-     * @return
-     * @throws Exception
-     */
     public String login(String username, String password)throws Exception{
         String lusername=username.toLowerCase();
         if(admins.containsKey(lusername) & students.containsKey(lusername)){
@@ -169,13 +142,9 @@ public class Database {
         if(students.containsKey(lusername)){
             students.get(lusername).login(password);
         }
-        return username;
+        return lusername;
     }
 
-    /**
-     *
-     * @param username
-     */
     public void logout(String username){
         String lusername=username;
         if(admins.containsKey(lusername)){
@@ -186,14 +155,8 @@ public class Database {
         }
     }
 
-    /**
-     *
-     * @param Cid
-     * @param student
-     * @throws Exception
-     */
     public void courseReg(String Cid, String student)throws Exception{
-        String lusername=student;
+        String lusername=student.toLowerCase();
         if(admins.containsKey(lusername)){
             throw new Exception("Admins cant register to courses");
         }else{
@@ -215,12 +178,6 @@ public class Database {
         }
     }
 
-    /**
-     *
-     * @param Cid
-     * @return
-     * @throws Exception
-     */
     public String  kdamCheck(String Cid) throws Exception{
         if(!courses.containsKey(Cid)){
             throw new Exception("Course does not Exist");

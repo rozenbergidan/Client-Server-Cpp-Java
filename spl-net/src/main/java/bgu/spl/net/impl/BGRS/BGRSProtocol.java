@@ -177,7 +177,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         if(!loggedIn){
             return err(STUDENTSTAT);
         }
-        String output = "Student: "+ username + "\nCourses: ";
+        String output = "Student: "+ str[1] + "\nCourses: ";
         try{
             output = output + Database.getInstance().studentStatus(str[1], username);
         }catch (Exception e) { return err(STUDENTSTAT);}

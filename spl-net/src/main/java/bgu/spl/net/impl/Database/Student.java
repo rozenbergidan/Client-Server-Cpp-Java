@@ -11,15 +11,17 @@ public class Student extends User {
         courses=new LinkedList<>();
     }
 
+    public void unregister(String Cid){
+        courses.remove(Cid);
+    }
 
     public void register(String courseNum){
         courses.add(courseNum);
         sort();
     }
 
-    public void unregister(String Cid){
-        courses.remove(Cid);
-    }
+
+
     private void sort(){
         courses.sort(Comparator.comparingInt(x -> Database.getInstance().getIndex(x)));
         }

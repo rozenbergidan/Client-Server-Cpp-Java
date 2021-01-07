@@ -33,7 +33,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             byte[] tmp = arrMerge(shortToBytes(opCode), shortToBytes(Short.parseShort(str[1])));
             if(str.length >= 3){
                 int secSpace = message.indexOf(" ", 4);
-                byte[] msgArr = message.substring(secSpace).getBytes(StandardCharsets.UTF_8);
+                byte[] msgArr = message.substring(secSpace+1).getBytes(StandardCharsets.UTF_8);
                 return arrMerge(tmp, msgArr);
             }
             else return tmp;
@@ -194,7 +194,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
                 byte[] byteArr=Arrays.copyOfRange(bytes,2,len);
                 String srt = bytesToString(byteArr);
                 len = 0;
-                return opCode + srt;
+                return opCode +" "+ srt;
             }
             pushByte(nextByte);
             return null;
