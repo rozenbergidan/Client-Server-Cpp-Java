@@ -3,6 +3,7 @@
 
 CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o: ../include/ConnectionHandler.h
 CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o: ../include/InputHandler.h
+CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o: ../include/Receiver.h
 CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o: ../src/BGRSClient.cpp
 
 CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.o: ../include/ConnectionHandler.h

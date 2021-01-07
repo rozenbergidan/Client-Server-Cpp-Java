@@ -24,13 +24,15 @@ void Receiver::run(){
             break;
         }
         short receivedAboutOpCode = bytesToShort(receivedAboutArr);
-        if(opCode == 12){
-            std::string message;
-            if(!connectionHandler.getLine(message)){
-                std::cout << "Disconnected. Exiting...\n" << std::endl;
-                break;
-            }
-            std::cout<< "ACK " +std::to_string(receivedAboutOpCode) + message;
+        if(opCode == 12 ) {
+            if (((receivedAboutOpCode == 7) || (receivedAboutOpCode == 8) || (receivedAboutOpCode == 9) || (receivedAboutOpCode == 11))) {
+                std::string message;
+                if (!connectionHandler.getLine(message)) {
+                    std::cout << "Disconnected. Exiting...\n" << std::endl;
+                    break;
+                }
+                std::cout << "ACK " + std::to_string(receivedAboutOpCode) + message;
+            } else std::cout << "ACK " + std::to_string(receivedAboutOpCode);
         }
         else if(opCode == 13){
             std::cout<< "ERR " +std::to_string(receivedAboutOpCode);
@@ -52,25 +54,25 @@ void Receiver::run(){
     }
 }
 
-bool Receiver::getFrameAscii(std::string& frame, char delimiter) {
-    char ch;
-    // Stop when we encounter the null character.
-    // Notice that the null character is not appended to the frame string.
-    try {
-        do{
-            if(!connectionHandler.getBytes(&ch, 1))
-            {
-                return false;
-            }
-            if(ch!='\0')
-                frame.append(1, ch);
-        }while (delimiter != ch);
-    } catch (std::exception& e) {
-        std::cerr << "recv failed2 (Error: " << e.what() << ')' << std::endl;
-        return false;
-    }
-    return true;
-}
+//bool Receiver::getFrameAscii(std::string& frame, char delimiter) {
+//    char ch;
+//    // Stop when we encounter the null character.
+//    // Notice that the null character is not appended to the frame string.
+//    try {
+//        do{
+//            if(!connectionHandler.getBytes(&ch, 1))
+//            {
+//                return false;
+//            }
+//            if(ch!='\0')
+//                frame.append(1, ch);
+//        }while (delimiter != ch);
+//    } catch (std::exception& e) {
+//        std::cerr << "recv failed2 (Error: " << e.what() << ')' << std::endl;
+//        return false;
+//    }
+//    return true;
+//}
 
 short Receiver::bytesToShort(char* bytesArr)
 {

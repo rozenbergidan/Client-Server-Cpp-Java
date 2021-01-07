@@ -29,30 +29,43 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             return arrMerge(shortToBytes(opCode),shortToBytes(errMsg));
         }
         else {
-            String afterOpcode = message.substring(4);
-            boolean additionalMsg = afterOpcode.contains(" ");
-            short opcodeAns;
-
-            if (afterOpcode.charAt(5) != ' ') {
-                opcodeAns = Short.parseShort(afterOpcode.substring(4, 5));
-            } else {
-                opcodeAns = Short.parseShort("" + afterOpcode.charAt(4));
+            String[] str = message.split(" ");
+            byte[] tmp = arrMerge(shortToBytes(opCode), shortToBytes(Short.parseShort(str[1])));
+            if(str.length >= 3){
+                int secSpace = message.indexOf(" ", 4);
+                byte[] msgArr = message.substring(secSpace).getBytes(StandardCharsets.UTF_8);
+                return arrMerge(tmp, msgArr);
             }
-            byte[] opcodebyte = shortToBytes(opCode);
-            byte[] opcodeAnsbyte = shortToBytes(opcodeAns);
-            byte[] output;
-            if(additionalMsg){
-                String msg=message.substring(afterOpcode.indexOf(" ")+1);
-                byte[] stringBytes=message.getBytes(StandardCharsets.UTF_8);
-                byte[] temp=arrMerge(arrMerge(opcodebyte,opcodeAnsbyte),stringBytes);
-                output=new byte[temp.length+1];
-                output[output.length-1]=0;
-            }else{
-                byte[] temp = arrMerge(opcodebyte,opcodeAnsbyte);
-                output=new byte[temp.length+1];
-                output[output.length-1]=0;
-            }
-            return output;
+            else return tmp;
+//            String afterOpcode = message.substring(4);
+//            int spaceAt = message.indexOf(' ');
+//            if(spaceAt == -1) {
+//                short ackMsg = Short.parseShort(afterOpcode);
+//                return arrMerge(shortToBytes(opCode),shortToBytes(ackMsg));
+//            }
+//            boolean additionalMsg = afterOpcode.contains(" ");
+//            short opcodeAns;
+//
+//            if (afterOpcode.charAt(5) != ' ') {
+//                opcodeAns = Short.parseShort(afterOpcode.substring(4, 5));
+//            } else {
+//                opcodeAns = Short.parseShort("" + afterOpcode.charAt(4));
+//            }
+//            byte[] opcodebyte = shortToBytes(opCode);
+//            byte[] opcodeAnsbyte = shortToBytes(opcodeAns);
+//            byte[] output;
+//            if(additionalMsg){
+//                String msg=message.substring(afterOpcode.indexOf(" ")+1);
+//                byte[] stringBytes=message.getBytes(StandardCharsets.UTF_8);
+//                byte[] temp=arrMerge(arrMerge(opcodebyte,opcodeAnsbyte),stringBytes);
+//                output=new byte[temp.length+1];
+//                output[output.length-1]=0;
+//            }else{
+//                byte[] temp = arrMerge(opcodebyte,opcodeAnsbyte);
+//                output=new byte[temp.length+1];
+//                output[output.length-1]=0;
+//            }
+//            return output;
         }
     }
 
