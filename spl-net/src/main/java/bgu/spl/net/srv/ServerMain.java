@@ -15,12 +15,12 @@ public class ServerMain {
             Database.getInstance().initialize("./Courses.txt");
             Database.getInstance().adminReg("idan","123");
             Database.getInstance().studentReg("tsuri","123");
-            Database.getInstance().courseReg("6","tsuri");
-            Database.getInstance().courseReg("1","tsuri");
-            Database.getInstance().courseReg("2","tsuri");
-
-            String str = Database.getInstance().studentStatus("tsuri","idan");
-            System.out.println(str);
+//            Database.getInstance().courseReg("6","tsuri");
+//            Database.getInstance().courseReg("1","tsuri");
+//            Database.getInstance().courseReg("2","tsuri");
+//
+//            String str = Database.getInstance().studentStatus("tsuri","idan");
+//            System.out.println(str);
 //
             Database database= Database.getInstance();
 
