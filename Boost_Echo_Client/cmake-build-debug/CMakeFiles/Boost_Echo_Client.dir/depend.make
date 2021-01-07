@@ -12,3 +12,7 @@ CMakeFiles/Boost_Echo_Client.dir/src/InputHandler.cpp.o: ../include/ConnectionHa
 CMakeFiles/Boost_Echo_Client.dir/src/InputHandler.cpp.o: ../include/InputHandler.h
 CMakeFiles/Boost_Echo_Client.dir/src/InputHandler.cpp.o: ../src/InputHandler.cpp
 
+CMakeFiles/Boost_Echo_Client.dir/src/Receiver.cpp.o: ../include/ConnectionHandler.h
+CMakeFiles/Boost_Echo_Client.dir/src/Receiver.cpp.o: ../include/Receiver.h
+CMakeFiles/Boost_Echo_Client.dir/src/Receiver.cpp.o: ../src/Receiver.cpp
+

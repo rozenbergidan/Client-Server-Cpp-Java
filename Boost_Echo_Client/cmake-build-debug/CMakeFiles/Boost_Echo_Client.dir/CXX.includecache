@@ -19,8 +19,12 @@ mutex
 -
 ConnectionHandler.h
 /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/ConnectionHandler.h
-queue
+
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/Receiver.h
+mutex
 -
+ConnectionHandler.h
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/ConnectionHandler.h
 
 /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/BGRSClient.cpp
 stdlib.h
@@ -36,6 +40,10 @@ iostream
 thread
 -
 
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/ConnectionHandler.cpp
+../include/ConnectionHandler.h
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/ConnectionHandler.h
+
 /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/InputHandler.cpp
 iostream
 -
@@ -43,4 +51,8 @@ iostream
 /home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/InputHandler.h
 exception
 -
+
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/src/Receiver.cpp
+../include/Receiver.h
+/home/spl211/Desktop/SPL/Assingment3/spl3/Boost_Echo_Client/include/Receiver.h
 
