@@ -27,6 +27,7 @@ void InputHandler::run(){
             std::string restOfTheLine= line.substr(line.find(" ")+1);
 
             int restArrLen = getRestArrSize(operation,restOfTheLine); // predict how much bytes we will need.
+
             char restArr [restArrLen]; // create array in the right size.
             opToFullMessage(operation,restOfTheLine,restArr);// fill the array with values.
 
@@ -101,6 +102,7 @@ void InputHandler::opToFullMessage(std::string opCode, std::string line, char *o
         stringToCharArr(line,output);
     }
     else if(opCode.compare("LOGOUT") == 0){
+
     }
     else if(opCode.compare("COURSEREG") == 0){
         shortToBytes(stringToShort(line),output);
@@ -121,6 +123,7 @@ void InputHandler::opToFullMessage(std::string opCode, std::string line, char *o
         shortToBytes(stringToShort(line),output);
     }
     else if(opCode.compare("MYCOURSES") == 0){
+
     }
     else throw std::exception();
 }
@@ -174,7 +177,7 @@ int InputHandler::getRestArrSize(std::string operation, std::string restOfTheLin
         return 0;
     }
 
-    return 40;
+    return 0;
 }
 
 short InputHandler::stringToShort(std::string numAsString) {// if you use this function it is up to ypu to use try, catch and print to the user the message.

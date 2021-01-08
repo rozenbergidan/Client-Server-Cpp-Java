@@ -165,6 +165,7 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
         @Override
         protected String isDone() {
+            len = 0;
             return "" + opCode;
         }
     }
