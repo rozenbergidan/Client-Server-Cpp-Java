@@ -25,17 +25,18 @@ void Receiver::run(){
         }
         short receivedAboutOpCode = bytesToShort(receivedAboutArr);
         if(opCode == 12 ) {
-            if (((receivedAboutOpCode == 7) || (receivedAboutOpCode == 8) || (receivedAboutOpCode == 9) || (receivedAboutOpCode == 11))) {
+//            if (((receivedAboutOpCode == 7) || (receivedAboutOpCode == 8) || (receivedAboutOpCode == 9) || (receivedAboutOpCode == 11))) {
                 std::string message;
                 if (!connectionHandler.getLine(message)) {
                     std::cout << "Disconnected. Exiting...\n" << std::endl;
                     break;
                 }
                 std::cout << "ACK " << std::to_string(receivedAboutOpCode) << " " << message << std::endl;
-            } else {
-                std::cout << "ACK " << std::to_string(receivedAboutOpCode) << std::endl;
             }
-        }
+//                else {
+//                std::cout << "ACK " << std::to_string(receivedAboutOpCode) << std::endl;
+//            }
+//        }
         else if(opCode == 13){
             std::cout<< "ERR " << std::to_string(receivedAboutOpCode) << std::endl;
         }
