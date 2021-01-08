@@ -9,43 +9,45 @@
 
 
 //InputHendler::InputHendler(std::mutex & _mutex, std::queue<char[]> & queue): mutex(_mutex), messageQueue(queue) {}
-InputHandler::InputHandler(std::mutex & _mutex, ConnectionHandler &_connectionHandler): mutex(_mutex), connectionHandler(_connectionHandler){}
+InputHandler::InputHandler(std::mutex & _mutex, ConnectionHandler &_connectionHandler, bool & _shouldTerminate, bool & _msgReceived): mutex(_mutex), connectionHandler(_connectionHandler),shouldTerminate(_shouldTerminate), msgReceived(_msgReceived){}
 
 void InputHandler::run(){
-    while(true) {
+    while(!shouldTerminate) {
         const short bufsize = 1024;
         char buf[bufsize];
-        std::cin.getline(buf, bufsize);
-        std::string line(buf);
-        try{
-            verifyValidInput(line);//verify if the input is legal, throw exception if necessary.
+        if(msgReceived) {
+            std::cin.getline(buf, bufsize);
+            msgReceived = false;
+            std::string line(buf);
+            try {
+                verifyValidInput(line);//verify if the input is legal, throw exception if necessary.
 
-            std::string operation = line.substr(0,line.find(" "));
-            char opArr[2];
-            operationToCharArr(operation,opArr);//opArr holds the opCode in bytes.
+                std::string operation = line.substr(0, line.find(" "));
+                char opArr[2];
+                operationToCharArr(operation, opArr);//opArr holds the opCode in bytes.
 
-            std::string restOfTheLine= line.substr(line.find(" ")+1);
+                std::string restOfTheLine = line.substr(line.find(" ") + 1);
 
-            int restArrLen = getRestArrSize(operation,restOfTheLine); // predict how much bytes we will need.
+                int restArrLen = getRestArrSize(operation, restOfTheLine); // predict how much bytes we will need.
 
-            char restArr [restArrLen]; // create array in the right size.
-            opToFullMessage(operation,restOfTheLine,restArr);// fill the array with values.
+                char restArr[restArrLen]; // create array in the right size.
+                opToFullMessage(operation, restOfTheLine, restArr);// fill the array with values.
 
-            char send[2 + restArrLen]; //create the output array
-            send[0] = opArr[0];
-            send[1] = opArr[1];
-            for(int i = 2; i < 2 + restArrLen; i++){
-                send[i] = restArr[i-2];
+                char send[2 + restArrLen]; //create the output array
+                send[0] = opArr[0];
+                send[1] = opArr[1];
+                for (int i = 2; i < 2 + restArrLen; i++) {
+                    send[i] = restArr[i - 2];
+                }
+                if (!connectionHandler.sendBytes(send, 2 + restArrLen)) {
+                    std::cout << "Disconnected. Exiting...\n" << std::endl;
+                    shouldTerminate = true;
+                }
+                std::cout << "Sent " << 2 + restArrLen << " bytes to server" << std::endl;
+            } catch (std::exception &e) {
+                std::cout << "invalid input" << std::endl;
             }
-            if (!connectionHandler.sendBytes(send, 2 + restArrLen)) {
-                std::cout << "Disconnected. Exiting...\n" << std::endl;
-                break;
-            }
-            std::cout << "Sent " << 2 + restArrLen << " bytes to server" << std::endl;
-        }catch (std::exception &e) {
-            std::cout<<"invalid input"<<std::endl;
         }
-
     }
 }
 

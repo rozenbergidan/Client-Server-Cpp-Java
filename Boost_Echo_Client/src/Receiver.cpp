@@ -5,31 +5,36 @@
 
 #include "../include/Receiver.h"
 
-Receiver::Receiver(std::mutex & _mutex, ConnectionHandler &_connectionHandler): mutex(_mutex), connectionHandler(_connectionHandler){}
+Receiver::Receiver(std::mutex & _mutex, ConnectionHandler &_connectionHandler, bool & _shouldTerminate, bool & _msgReceived): mutex(_mutex), connectionHandler(_connectionHandler), shouldTerminate(_shouldTerminate), msgReceived(_msgReceived){}
 
 void Receiver::run(){
-    while(true) {
+    while(!shouldTerminate) {
         // Get back an answer: by using the expected number of bytes (len bytes + newline delimiter)
         // We could also use: connectionHandler.getline(answer) and then get the answer without the newline char at the end
 
         char opCodeArr[2];
         if(!connectionHandler.getBytes(opCodeArr,2)){
+//            std::lock_guard<std::mutex> lock(mutex);
             std::cout << "Disconnected. Exiting...\n" << std::endl;
-            break;
+            shouldTerminate=true;
         }
         short opCode = bytesToShort(opCodeArr);
         char receivedAboutArr[2];
         if(!connectionHandler.getBytes(receivedAboutArr,2)){
             std::cout << "Disconnected. Exiting...\n" << std::endl;
-            break;
+            shouldTerminate=true;
+
         }
         short receivedAboutOpCode = bytesToShort(receivedAboutArr);
         if(opCode == 12 ) {
-//            if (((receivedAboutOpCode == 7) || (receivedAboutOpCode == 8) || (receivedAboutOpCode == 9) || (receivedAboutOpCode == 11))) {
+            if(receivedAboutOpCode==4){
+                shouldTerminate=true;
+
+            }
                 std::string message;
                 if (!connectionHandler.getLine(message)) {
                     std::cout << "Disconnected. Exiting...\n" << std::endl;
-                    break;
+                    shouldTerminate=true;
                 }
                 std::cout << "ACK " << std::to_string(receivedAboutOpCode) << " " << message << std::endl;
             }
@@ -43,17 +48,7 @@ void Receiver::run(){
         else{
             std::cout<<"something went wrong... opCode is not error nor ack";
         }
-
-
-//        int len = answer.length();
-//        // A C string must end with a 0 char delimiter.  When we filled the answer buffer from the socket
-//        // we filled up to the \n char - we must make sure now that a 0 char is also present. So we truncate last character.
-//        answer.resize(len - 1);
-//        std::cout << "Reply: " << answer << " " << len << " bytes " << std::endl << std::endl;
-//        if (answer == "bye") {
-//            std::cout << "Exiting...\n" << std::endl;
-//            break;
-//        }
+        msgReceived=true;
     }
 }
 

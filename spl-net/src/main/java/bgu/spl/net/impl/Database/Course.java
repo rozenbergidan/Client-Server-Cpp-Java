@@ -44,7 +44,7 @@ public class Course {
     }
 
     public String status(){
-        return "("+id+") "+name+"\n"+"Seats available: "+capacity+"\\"+limit+"\n"+"Students Registered:"+students.toString()+"\n";
+        return "("+id+") "+name+"\n"+"Seats available: "+capacity+"\\"+limit+"\n"+"Students Registered:"+students.toString();
 
     }
 

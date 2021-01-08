@@ -11,13 +11,15 @@
 
 class InputHandler {
 public:
-    InputHandler(std::mutex & _mutex, ConnectionHandler &_connectionHandler);
+    InputHandler(std::mutex & _mutex, ConnectionHandler &_connectionHandler, bool & _shouldTerminate, bool & _msgReceived);
     void run( );
 
 private:
 
     std::mutex & mutex;
     ConnectionHandler &connectionHandler;
+    bool &shouldTerminate;
+    bool &msgReceived;
 
     void operationToCharArr(std::string operation, char *output);
     void opToFullMessage(std::string opCode, std::string line, char *output);

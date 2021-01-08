@@ -11,13 +11,15 @@
 
 class Receiver {
 public:
-    Receiver(std::mutex & _mutex, ConnectionHandler &_connectionHandler);
+    Receiver(std::mutex & _mutex, ConnectionHandler &_connectionHandler, bool & _shouldTerminate, bool & _msgReceived);
     void run( );
 
 private:
 
     std::mutex & mutex;
     ConnectionHandler &connectionHandler;
+    bool &shouldTerminate;
+    bool &msgReceived;
 
     bool getFrameAscii(std::string& frame, char delimiter);
 
