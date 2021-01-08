@@ -34,9 +34,12 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             if(str.length >= 3){
                 int secSpace = message.indexOf(" ", 4);
                 byte[] msgArr = message.substring(secSpace+1).getBytes(StandardCharsets.UTF_8);
-                return arrMerge(tmp, msgArr);
+                tmp = arrMerge(tmp, msgArr);
             }
-            else return tmp;
+            byte[] endACK= new byte[1];
+            endACK[0]='\0';
+            return arrMerge(tmp,endACK);
+
 //            String afterOpcode = message.substring(4);
 //            int spaceAt = message.indexOf(' ');
 //            if(spaceAt == -1) {
