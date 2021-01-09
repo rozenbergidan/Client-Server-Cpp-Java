@@ -22,7 +22,6 @@ private:
     bool &msgReceived;
 
     bool getFrameAscii(std::string& frame, char delimiter);
-
     short bytesToShort(char *bytesArr);
 };
 
