@@ -34,12 +34,43 @@
   <component name="ChangeListManager">
     <list default="true" id="11bdf94a-abd7-44e8-96bf-ed8fa64bb85c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/BGRSClient" beforeDir="false" afterPath="$PROJECT_DIR$/bin/BGRSClient" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/BGRSClient.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/BGRSClient.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/InputHandler.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/InputHandler.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Receiver.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Receiver.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Boost_Echo_Client" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Boost_Echo_Client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Boost_Echo_Client.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Boost_Echo_Client.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/BGRSClient.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/ConnectionHandler.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/InputHandler.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/InputHandler.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/Receiver.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/Receiver.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/InputHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputHandler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spl-net/src/main/java/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/src/main/java/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spl-net/src/main/java/bgu/spl/net/impl/BGRS/BGRSProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/src/main/java/bgu/spl/net/impl/BGRS/BGRSProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$Decoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$Decoder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$oneShortDecoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$oneShortDecoder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$oneShortOneStringDecoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$oneShortOneStringDecoder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$twoShortDecoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$twoShortDecoder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$twoStringDecoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder$twoStringDecoder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSEncoderDecoder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/BGRS/BGRSProtocol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/Database/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/Database/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/Database/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/Database/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/Database/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/impl/Database/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/srv/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/srv/Server$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spl-net/target/classes/bgu/spl/net/srv/ServerMain.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +101,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -85,6 +117,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -98,6 +135,8 @@
       <workItem from="1609952853239" duration="1450000" />
       <workItem from="1610036498492" duration="671000" />
       <workItem from="1610037384838" duration="3470000" />
+      <workItem from="1610101565898" duration="3536000" />
+      <workItem from="1610181180620" duration="1179000" />
     </task>
     <servers />
   </component>
