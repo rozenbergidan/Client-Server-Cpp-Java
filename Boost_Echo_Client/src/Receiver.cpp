@@ -39,9 +39,9 @@ void Receiver::run(){
         else if(opCode == 13){
             std::cout<< "ERR " << std::to_string(receivedAboutOpCode) << std::endl;
         }
-        else{
-            std::cout<<"something went wrong... opCode is not error nor ack";
-        }
+//        else{
+//            std::cout<<"something went wrong... opCode is not error nor ack";
+//        }
         msgReceived=true;
     }
 }

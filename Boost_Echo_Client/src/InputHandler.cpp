@@ -42,7 +42,7 @@ void InputHandler::run(){
                     std::cout << "Disconnected. Exiting...\n" << std::endl;
                     shouldTerminate = true;
                 }
-                std::cout << "Sent " << 2 + restArrLen << " bytes to server" << std::endl;
+                //std::cout << "Sent " << 2 + restArrLen << " bytes to server" << std::endl;
             } catch (std::exception &e) {
                 std::cout << "ERR" << std::endl;
                 msgReceived=true;

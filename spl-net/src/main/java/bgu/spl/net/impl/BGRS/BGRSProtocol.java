@@ -32,13 +32,11 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     }
 
     @Override
-    public String process(String msg) { //ADMINREG username password
-        System.out.println("[" + LocalDateTime.now() + "]: " + msg);
+    public String process(String msg) {
+//        System.out.println("[" + LocalDateTime.now() + "]: " + msg);
         String[] splitMsg=msg.split(" ");
         short opCode = Short.parseShort(splitMsg[0]);
-        if(opCode == ADMINREG){
-            return adminReg(splitMsg);
-        }
+        if(opCode == ADMINREG) return adminReg(splitMsg);
         else if(opCode == STUDENTREG) return studentReg(splitMsg);
         else if(opCode == LOGIN) return login(splitMsg);
         else if(opCode ==LOGOUT) return logout(splitMsg);

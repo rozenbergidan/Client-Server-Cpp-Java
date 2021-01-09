@@ -100,7 +100,6 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
         if(opCode == 5 || opCode == 6 || opCode == 7 || opCode == 9 ||opCode == 10 ) return new twoShortDecoder(opCode);
         if(opCode == 8) return new oneShortOneStringDecoder(opCode);
         if(opCode == 1 || opCode == 2 || opCode == 3) return new twoStringDecoder(opCode);
-        //throw new Exception("opCode not supported");
         return new oneShortDecoder(opCode);
     }
 
