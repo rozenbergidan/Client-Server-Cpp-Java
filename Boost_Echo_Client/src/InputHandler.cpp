@@ -45,7 +45,8 @@ void InputHandler::run(){
                 }
                 std::cout << "Sent " << 2 + restArrLen << " bytes to server" << std::endl;
             } catch (std::exception &e) {
-                std::cout << "invalid input" << std::endl;
+                std::cout << "ERR" << std::endl;
+                msgReceived=true;
             }
         }
     }
@@ -91,6 +92,7 @@ void InputHandler::operationToCharArr(std::string operation, char *output){
     else if(operation.compare("MYCOURSES")==0){
         shortToBytes(11,output);
     }
+    throw std::exception();
 }
 
 void InputHandler::opToFullMessage(std::string opCode, std::string line, char *output) {
