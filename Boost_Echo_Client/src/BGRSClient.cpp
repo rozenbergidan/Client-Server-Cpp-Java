@@ -33,15 +33,9 @@ int main (int argc, char *argv[]) {
     Receiver receiver(mutex,connectionHandler,shouldTerminate, msgReceived);
     InputHandler inputHandler(mutex,connectionHandler,shouldTerminate,msgReceived);
 
-
-//    std::thread receiverThread(&Receiver::run, &receiver);
     std::thread inputThread(&InputHandler::run, &inputHandler);
-
-//    receiverThread.join();
-//    inputThread.join();
-
-//    inputHandler.run();
     receiver.run();
+
     inputThread.join();
 
     return 0;

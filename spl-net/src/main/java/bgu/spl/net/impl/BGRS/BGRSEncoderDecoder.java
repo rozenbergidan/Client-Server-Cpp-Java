@@ -5,13 +5,6 @@ import bgu.spl.net.api.MessageEncoderDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-/**
- * there are 4 different decodes:
- * LOGOUT + MYCOURSE 1
- * ADMINREG+STUDENTREG+LOGIN 2
- * COURSEREG+KDAMCHECK+COURSESTAT+ISREGISTER+UNREGISTER 3
- * STUDENTSTAT 4
- */
 public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
 
     private byte[] bytes = new byte[1 << 10]; //start with 1k
@@ -40,35 +33,6 @@ public class BGRSEncoderDecoder implements MessageEncoderDecoder<String> {
             endACK[0]='\0';
             return arrMerge(tmp,endACK);
 
-//            String afterOpcode = message.substring(4);
-//            int spaceAt = message.indexOf(' ');
-//            if(spaceAt == -1) {
-//                short ackMsg = Short.parseShort(afterOpcode);
-//                return arrMerge(shortToBytes(opCode),shortToBytes(ackMsg));
-//            }
-//            boolean additionalMsg = afterOpcode.contains(" ");
-//            short opcodeAns;
-//
-//            if (afterOpcode.charAt(5) != ' ') {
-//                opcodeAns = Short.parseShort(afterOpcode.substring(4, 5));
-//            } else {
-//                opcodeAns = Short.parseShort("" + afterOpcode.charAt(4));
-//            }
-//            byte[] opcodebyte = shortToBytes(opCode);
-//            byte[] opcodeAnsbyte = shortToBytes(opcodeAns);
-//            byte[] output;
-//            if(additionalMsg){
-//                String msg=message.substring(afterOpcode.indexOf(" ")+1);
-//                byte[] stringBytes=message.getBytes(StandardCharsets.UTF_8);
-//                byte[] temp=arrMerge(arrMerge(opcodebyte,opcodeAnsbyte),stringBytes);
-//                output=new byte[temp.length+1];
-//                output[output.length-1]=0;
-//            }else{
-//                byte[] temp = arrMerge(opcodebyte,opcodeAnsbyte);
-//                output=new byte[temp.length+1];
-//                output[output.length-1]=0;
-//            }
-//            return output;
         }
     }
 

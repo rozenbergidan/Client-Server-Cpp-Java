@@ -11,18 +11,18 @@ public class BGRSProtocol implements MessagingProtocol<String> {
     private String username;
     private boolean shouldTerminate;
 
-    final short ADMINREG = 1;       //1
-    final short STUDENTREG=2;     //2
-    final short LOGIN=3;//3
-    final short LOGOUT=4;         //4
-    final short COURSEREG=5;      //5
-    final short KDAMCHECK=6;   //6
-    final short COURSESTAT=7;     //7
-    final short STUDENTSTAT=8;    //8
-    final short ISREGISTERED=9;  //9
-    final short UNREGISTER=10; //10
-    final short MYCOURSES=11;      //11
-    final short ACK=12;            //12
+    final short ADMINREG = 1;
+    final short STUDENTREG=2;
+    final short LOGIN=3;
+    final short LOGOUT=4;
+    final short COURSEREG=5;
+    final short KDAMCHECK=6;
+    final short COURSESTAT=7;
+    final short STUDENTSTAT=8;
+    final short ISREGISTERED=9;
+    final short UNREGISTER=10;
+    final short MYCOURSES=11;
+    final short ACK=12;
     final short ERR=13;
 
     public BGRSProtocol(){
@@ -30,12 +30,6 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         username="";
         shouldTerminate=false;
     }
-
-
-
-             //13
-
-
 
     @Override
     public String process(String msg) { //ADMINREG username password
@@ -181,7 +175,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
         try{
             output = output + Database.getInstance().studentStatus(str[1], username);
         }catch (Exception e) { return err(STUDENTSTAT);}
-        return ack(STUDENTSTAT, output);    //8 - only for AMIN
+        return ack(STUDENTSTAT, output);
     }
 
 
@@ -203,7 +197,7 @@ public class BGRSProtocol implements MessagingProtocol<String> {
             Database.getInstance().unregister(str[1], username);
         }catch (Exception e) {return err(UNREGISTER);}
 
-        return ack(UNREGISTER);    //10
+        return ack(UNREGISTER);
     }
 
     private String myCourses(String[]str){

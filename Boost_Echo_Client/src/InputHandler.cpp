@@ -8,7 +8,6 @@
 #include <exception>
 
 
-//InputHendler::InputHendler(std::mutex & _mutex, std::queue<char[]> & queue): mutex(_mutex), messageQueue(queue) {}
 InputHandler::InputHandler(std::mutex & _mutex, ConnectionHandler &_connectionHandler, bool & _shouldTerminate, bool & _msgReceived): mutex(_mutex), connectionHandler(_connectionHandler),shouldTerminate(_shouldTerminate), msgReceived(_msgReceived){}
 
 void InputHandler::run(){

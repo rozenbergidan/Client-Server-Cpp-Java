@@ -14,7 +14,6 @@ void Receiver::run(){
 
         char opCodeArr[2];
         if(!connectionHandler.getBytes(opCodeArr,2)){
-//            std::lock_guard<std::mutex> lock(mutex);
             std::cout << "Disconnected. Exiting...\n" << std::endl;
             shouldTerminate=true;
         }
@@ -29,19 +28,14 @@ void Receiver::run(){
         if(opCode == 12 ) {
             if(receivedAboutOpCode==4){
                 shouldTerminate=true;
-
             }
-                std::string message;
-                if (!connectionHandler.getLine(message)) {
-                    std::cout << "Disconnected. Exiting...\n" << std::endl;
-                    shouldTerminate=true;
-                }
-                std::cout << "ACK " << std::to_string(receivedAboutOpCode) << " " << message << std::endl;
+            std::string message;
+            if (!connectionHandler.getLine(message)) {
+                std::cout << "Disconnected. Exiting...\n" << std::endl;
+                shouldTerminate=true;
             }
-//                else {
-//                std::cout << "ACK " << std::to_string(receivedAboutOpCode) << std::endl;
-//            }
-//        }
+            std::cout << "ACK " << std::to_string(receivedAboutOpCode) << " " << message << std::endl;
+        }
         else if(opCode == 13){
             std::cout<< "ERR " << std::to_string(receivedAboutOpCode) << std::endl;
         }
@@ -52,25 +46,6 @@ void Receiver::run(){
     }
 }
 
-//bool Receiver::getFrameAscii(std::string& frame, char delimiter) {
-//    char ch;
-//    // Stop when we encounter the null character.
-//    // Notice that the null character is not appended to the frame string.
-//    try {
-//        do{
-//            if(!connectionHandler.getBytes(&ch, 1))
-//            {
-//                return false;
-//            }
-//            if(ch!='\0')
-//                frame.append(1, ch);
-//        }while (delimiter != ch);
-//    } catch (std::exception& e) {
-//        std::cerr << "recv failed2 (Error: " << e.what() << ')' << std::endl;
-//        return false;
-//    }
-//    return true;
-//}
 
 short Receiver::bytesToShort(char* bytesArr)
 {
