@@ -133,14 +133,16 @@ public class Database {
 
     public String login(String username, String password)throws Exception{
         String lusername=username.toLowerCase();
-        if(admins.containsKey(lusername) & students.containsKey(lusername)){
+        if(!admins.containsKey(lusername) & !students.containsKey(lusername)){
             throw new Exception("User does not exist");
         }
         if(admins.containsKey(lusername)){
             admins.get(lusername).login(password);
+            return lusername;
         }
         if(students.containsKey(lusername)){
             students.get(lusername).login(password);
+            return lusername;
         }
         return lusername;
     }

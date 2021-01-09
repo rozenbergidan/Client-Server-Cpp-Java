@@ -15,7 +15,7 @@ void InputHandler::run(){
     while(!shouldTerminate) {
         const short bufsize = 1024;
         char buf[bufsize];
-        if(msgReceived) {
+        if(msgReceived && !shouldTerminate) {
             std::cin.getline(buf, bufsize);
             msgReceived = false;
             std::string line(buf);
