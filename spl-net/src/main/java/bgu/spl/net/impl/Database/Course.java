@@ -1,5 +1,6 @@
 package bgu.spl.net.impl.Database;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Course {
@@ -20,15 +21,19 @@ public class Course {
         kdams=_kdams;
         index=_index;
     }
+    private void sort(){
+        kdams.sort(Comparator.comparingInt(x -> Database.getInstance().getIndex(x)));
+    }
 
     public LinkedList<String> getKdams(){
+        sort();
         return kdams;
     }
     public synchronized void register(String student) throws Exception{
         if (students.contains(student)) throw new Exception("student already registered to this course");
-        if (capacity > limit)  throw new Exception("tried to registered to full course");
+        if (capacity >= limit)  throw new Exception("tried to registered to full course");
             students.add(student);
-            sort();
+            java.util.Collections.sort(students);
             capacity++;
     }
 
@@ -46,9 +51,5 @@ public class Course {
     public String status(){
         return "("+id+") "+name+"\n"+"Seats available: "+capacity+"\\"+limit+"\n"+"Students Registered:"+students.toString();
 
-    }
-
-    private void sort(){
-        java.util.Collections.sort(students);
     }
 }

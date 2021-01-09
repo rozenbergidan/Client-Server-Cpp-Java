@@ -159,6 +159,9 @@ public class Database {
 
     public void courseReg(String Cid, String student)throws Exception{
         String lusername=student.toLowerCase();
+        if(Integer.parseInt(Cid)<0 || Integer.parseInt(Cid)>100){
+            throw new Exception("bad Course id");
+        }
         if(admins.containsKey(lusername)){
             throw new Exception("Admins cant register to courses");
         }else{

@@ -1,4 +1,4 @@
-package bgu.spl.net.srv;
+package bgu.spl.net.impl.BGRSServer;
 
 import bgu.spl.net.impl.BGRS.BGRSEncoderDecoder;
 import bgu.spl.net.impl.BGRS.BGRSProtocol;

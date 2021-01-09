@@ -1,4 +1,4 @@
-package bgu.spl.net.srv;
+package bgu.spl.net.impl.BGRSServer;
 
 import java.io.*;
 import java.net.Socket;
